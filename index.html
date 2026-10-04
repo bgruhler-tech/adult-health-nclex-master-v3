@@ -497,6 +497,8 @@ async function enterAccount(user){
   await studyDb.from('profiles').upsert({user_id:user.id,username},{onConflict:'user_id'});
   document.getElementById('accountName').textContent=`👤 ${username}`;document.getElementById('accountDock').style.display='flex';
   await loadCloudProgress();document.getElementById('authGate').classList.add('hidden');renderHome();
+  // Cloud state can finish hydrating just after the initial paint; render once more on the next frame.
+  requestAnimationFrame(()=>renderHome());
 }
 async function logoutUser(){if(studyDb)await studyDb.auth.signOut();currentUser=null;stats={};sessions={};qstats={};missed={};masteredIds={};seenIds={};randomModules={};document.getElementById('accountDock').style.display='none';document.getElementById('authGate').classList.remove('hidden');authMessage('Logged out.','good');}
 async function loadCloudProgress(){
