@@ -110,8 +110,12 @@ replaceOnce(
 html = html.replace('Last updated: October 28, 2026 — Chapter 4 added', 'Last updated: November 15, 2026 — Compact lesson layout');
 const ch5GlossaryData = JSON.parse(fs.readFileSync('ch5-glossary-data.json', 'utf8'));
 const lupusGlossaryPatch = `
-/* Chapter 5 audit: add diagnosis, medication, laboratory, and clinical terminology definitions. */
-Object.assign(window.GLOSSARY, ${JSON.stringify(ch5GlossaryData)});
+/* Chapter 5 audit: add missing terms and improve incomplete existing definitions without replacing established entries. */
+const ch5GlossaryEntries = ${JSON.stringify(ch5GlossaryData)};
+Object.entries(ch5GlossaryEntries).forEach(([term, entry]) => {
+  const existing = window.GLOSSARY[term];
+  if (!existing || !existing[1] || String(existing[1]).trim().length < 45) window.GLOSSARY[term] = entry;
+});
 `;
 replaceOnce('const GLOSSARY_PRON=window.GLOSSARY_PRON||{};', lupusGlossaryPatch+'\\nconst GLOSSARY_PRON=window.GLOSSARY_PRON||{};', 'lupus glossary terms');
 const compactLessonCss = `
