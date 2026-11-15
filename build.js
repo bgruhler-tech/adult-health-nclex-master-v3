@@ -232,7 +232,7 @@ const oldQuestionEnd = oldQuestionStart < 0 ? -1 : html.indexOf('</script>', old
 if (oldQuestionStart >= 0 && oldQuestionEnd >= 0) html = html.slice(0, oldQuestionStart) + html.slice(oldQuestionEnd + 9);
 html = html.replace('</body>', interactiveGlossaryPatch + '\\n</body>');
 const glossaryStyle = '.glossaryWord{display:inline!important;color:inherit!important;background:rgba(216,164,58,.22)!important;text-decoration:underline!important;text-decoration-style:dotted!important;text-decoration-color:#b9851d!important;text-underline-offset:3px!important;border:0!important;padding:0 1px!important;font:inherit!important;cursor:pointer!important;border-radius:2px!important}.glossaryWord:hover,.glossaryWord:focus{background:rgba(216,164,58,.42)!important;outline:1px solid rgba(185,133,29,.45)!important}';
-html = html.replace('</head>', '<style>'+glossaryStyle+'</style>\\n</head>');
+html = html.replace('</head>', '<style>'+glossaryStyle+'</style>\n</head>');
 if (!html.includes('Sinusitis') || !html.includes('ch5-high-yield-immunity-metabolism')) throw new Error('Preservation check failed.');
 
 const finalCompactCss = `
@@ -296,7 +296,7 @@ peekDirectHTML = function(q){
   return '<div class="peekDirect"><div class="peekDirectEyebrow">🎯 WHAT THIS QUESTION IS ACTUALLY TESTING</div><h3>'+esc(c?.title||q.tag||answer)+'</h3><div class="peekDirectWhy"><b>Why this answer fits:</b> '+esc(rationale)+'</div><div class="peekDirectStudy"><div class="peekSourceId"><b>Card ID:</b> <code>'+esc(q.id)+'</code></div><div class="peekSourceId"><b>Source:</b> '+esc(sourceTitle)+'</div><div class="peekSourceId"><b>Source ID:</b> <code>'+esc(q.noteId||match?.noteId||'Not supplied')+'</code></div><div class="peekDirectNote"><b>Key point summary:</b><div class="peekStudyItem">'+summary+'</div></div></div></div>';
 };
 `;
-replaceOnce(sourceNoteInit, sourceNoteInit+'\\n'+sourceNoteRuntime, 'source-linked study note initialization');
+replaceOnce(sourceNoteInit, sourceNoteInit+'\n'+sourceNoteRuntime, 'source-linked study note initialization');
 const oldQuizMeta = '<div class="qmeta"><span class="qbadge">\${esc(q.category||q.tag||"NCLEX")}</span><span class="qtype">';
 const newQuizMeta = '<div class="qmeta"><span class="qbadge">\${esc(q.category||q.tag||"NCLEX")}</span><span class="qIdBadge">Card ID: \${esc(q.id)}</span><span class="qtype">';
 replaceOnce(oldQuizMeta,newQuizMeta,'quiz card ID');
