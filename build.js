@@ -117,7 +117,7 @@ Object.entries(ch5GlossaryEntries).forEach(([term, entry]) => {
   if (!existing || !existing[1] || String(existing[1]).trim().length < 45) window.GLOSSARY[term] = entry;
 });
 `;
-replaceOnce('const GLOSSARY_PRON=window.GLOSSARY_PRON||{};', lupusGlossaryPatch+'\\nconst GLOSSARY_PRON=window.GLOSSARY_PRON||{};', 'lupus glossary terms');
+replaceOnce('const GLOSSARY_PRON=window.GLOSSARY_PRON||{};', lupusGlossaryPatch+'\nconst GLOSSARY_PRON=window.GLOSSARY_PRON||{};', 'lupus glossary terms');
 const compactLessonCss = `
 /* Compact lesson browser: two cards per row, less vertical padding */
 .moduleGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
