@@ -838,5 +838,10 @@
     "Parathyroid Function",
     "The parathyroid glands release parathyroid hormone (PTH), which helps regulate blood calcium and phosphate.",
     "PTH raises serum calcium. Too little PTH can cause hypocalcemia; too much can cause hypercalcemia."
+  ],
+  "biphasic": [
+    "Biphasic Reaction",
+    "A second phase in which symptoms recur after an initial improvement or resolution. In anaphylaxis, a biphasic reaction means the allergic emergency returns without a new exposure.",
+    "Continue observation after initial treatment because anaphylaxis can recur. Do not assume that improvement after epinephrine means the emergency is over; continue monitoring airway, breathing, circulation, and vital signs."
   ]
 }
