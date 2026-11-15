@@ -162,7 +162,7 @@ const interactiveGlossaryPatch = String.raw`
   function glossaryKeys(){
     return Object.keys(window.GLOSSARY||{}).filter(k=>typeof k==='string'&&k.trim().length>1).sort((a,b)=>b.length-a.length);
   }
-  function escapeRegExp(s){const special='.^$*+?()[]{}|\\\\';return String(s).split('').map(ch=>special.includes(ch)?'\\\\'+ch:ch).join('');}
+  function escapeRegExp(s){const slash=String.fromCharCode(92),special='.^$*+?()[]{}|'+slash;return String(s).split('').map(ch=>special.includes(ch)?slash+ch:ch).join('');}
   function enhance(root){
     if(!root)return;
     const keys=glossaryKeys();
@@ -233,157 +233,8 @@ if (oldQuestionStart >= 0 && oldQuestionEnd >= 0) html = html.slice(0, oldQuesti
 html = html.replace('</body>', interactiveGlossaryPatch + '\\n</body>');
 const glossaryStyle = '.glossaryWord{display:inline!important;color:inherit!important;background:rgba(216,164,58,.22)!important;text-decoration:underline!important;text-decoration-style:dotted!important;text-decoration-color:#b9851d!important;text-underline-offset:3px!important;border:0!important;padding:0 1px!important;font:inherit!important;cursor:pointer!important;border-radius:2px!important}.glossaryWord:hover,.glossaryWord:focus{background:rgba(216,164,58,.42)!important;outline:1px solid rgba(185,133,29,.45)!important}';
 html = html.replace('</head>', '<style>'+glossaryStyle+'</style>\\n</head>');
-if (!html.includes('Sinusitis') || !html.includes('ch5-high-yield-immunity-metabolism')) {'));
-    try{return new RegExp('(?<![A-Za-z0-9])('+escaped.join('|')+')(?![A-Za-z0-9])','gi');}
-    catch(e){console.error('Glossary matcher could not be built',e);return null;}
-  }
-  function enhance(root){
-    if(!root)return;
-    const re=makeRegex();
-    if(!re)return;
-    const scope=root.nodeType===Node.TEXT_NODE?root.parentElement:root;
-    if(!scope)return;
-    const walker=document.createTreeWalker(scope,NodeFilter.SHOW_TEXT,{
-      acceptNode(node){
-        if(!node.nodeValue||!node.nodeValue.trim())return NodeFilter.FILTER_REJECT;
-        const p=node.parentElement;
-        if(!p||p.closest(excluded))return NodeFilter.FILTER_REJECT;
-        return NodeFilter.FILTER_ACCEPT;
-      }
-    });
-    const nodes=[];
-    if(root.nodeType===Node.TEXT_NODE){
-      if(walker.currentNode!==root && !root.parentElement?.closest(excluded))nodes.push(root);
-    }else{
-      while(walker.nextNode())nodes.push(walker.currentNode);
-    }
-    nodes.forEach(node=>{
-      const value=node.nodeValue;
-      re.lastIndex=0;
-      if(!re.test(value)){re.lastIndex=0;return;}
-      re.lastIndex=0;
-      const fragment=document.createDocumentFragment();
-      let cursor=0,match;
-      while((match=re.exec(value))){
-        if(match.index>cursor)fragment.appendChild(document.createTextNode(value.slice(cursor,match.index)));
-        const term=match[0],button=document.createElement('button');
-        button.type='button';button.className='glossaryWord';button.dataset.term=term;
-        button.textContent=term;button.title='Tap to view definition';
-        button.setAttribute('aria-label','Define '+term);
-        fragment.appendChild(button);cursor=match.index+term.length;
-      }
-      if(cursor<value.length)fragment.appendChild(document.createTextNode(value.slice(cursor)));
-      node.parentNode?.replaceChild(fragment,node);
-    });
-  }
-  Object.assign(window.GLOSSARY, {
-    "systemic":["Systemic","A term describing something that affects or involves the body as a whole rather than one isolated area.","In nursing, systemic findings suggest broader body involvement. Systemic lupus erythematosus is an autoimmune disease that can affect multiple organs."],
-    "systemic lupus erythematosus":["Systemic Lupus Erythematosus (SLE)","A chronic systemic autoimmune disease that can affect multiple organs, including the skin, joints, kidneys, blood cells, heart, lungs, and nervous system.","Assess for fatigue, joint pain, photosensitive rash, oral ulcers, cytopenias, and renal involvement. ANA is sensitive but not specific; anti-dsDNA and anti-Smith antibodies are more specific. Monitor urinalysis and renal function; reinforce sun protection, prescribed treatment, and infection precautions when immunosuppressed."],
-    "lupus":["Lupus (Systemic Lupus Erythematosus, SLE)","An autoimmune disease that causes inflammation and can affect multiple organs.","Assess skin, joint, renal, blood, cardiac, pulmonary, and neurologic manifestations. Reinforce sun protection, medication adherence, and monitoring for organ involvement."],
-    "erythematosus":["Erythematosus","A medical adjective relating to redness or erythema; it is part of the name systemic lupus erythematosus.","In SLE, it is part of the disease name and is associated with inflammatory skin findings such as a malar rash."]
-  });
-  window.showGlossary=function(term){
-    const raw=String(term||'').trim(),g=window.GLOSSARY||{};
-    const key=Object.keys(g).find(k=>k.toLowerCase()===raw.toLowerCase());
-    const value=key?g[key]:null,modal=document.getElementById('glossaryModal');
-    if(!value||!modal)return;
-    document.getElementById('glossaryTitle').textContent=key;
-    document.getElementById('glossaryFull').textContent=value[0]||key;
-    document.getElementById('glossaryDef').textContent=value[1]||'';
-    document.getElementById('glossaryWhy').textContent=value[2]||'';
-    modal.classList.remove('hidden');modal.style.display='flex';
-    document.body.style.overflow='hidden';
-  };
-  window.enhanceGlossary=enhance;
-  document.addEventListener('click',function(event){
-    const word=event.target?.closest?.('.glossaryWord');
-    if(!word)return;
-    event.preventDefault();event.stopPropagation();
-    window.showGlossary(word.dataset.term||word.textContent);
-  },true);
-  let queued=false;
-  function refresh(){
-    if(queued)return;queued=true;
-    queueMicrotask(()=>{queued=false;enhance(document.body);});
-  }
-  function start(){
-    enhance(document.body);
-    if(!window.__globalGlossaryObserver){
-      window.__globalGlossaryObserver=new MutationObserver(records=>{
-        if(records.some(r=>r.addedNodes.length))refresh();
-      });
-      window.__globalGlossaryObserver.observe(document.body,{childList:true,subtree:true});
-    }
-  }
-  window.refreshStudyGlossary=refresh;
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});
-  else start();
-})();
-</script>`;
-const globalGlossaryStart = html.indexOf('<script id="glossaryDynamicPatch">');
-const globalGlossaryEnd = globalGlossaryStart < 0 ? -1 : html.indexOf('</script>', globalGlossaryStart);
-if (globalGlossaryStart < 0 || globalGlossaryEnd < 0) throw new Error('Global glossary renderer anchor missing; refusing unsafe build.');
-html = html.slice(0, globalGlossaryStart) + globalGlossaryPatch + html.slice(globalGlossaryEnd + '</script>'.length);
+if (!html.includes('Sinusitis') || !html.includes('ch5-high-yield-immunity-metabolism')) throw new Error('Preservation check failed.');
 
-if (!html.includes('Sinusitis') || !html.includes('ch5-high-yield-immunity-metabolism')) {
-  throw new Error('Preservation check failed. Refusing to publish.');
-}
-
-/* Final pass: dynamic glossary keys are built at runtime, after all chapter data is loaded. */
-const questionGlossaryPatch = String.raw`<script id="questionGlossaryFinalPatch">
-(function(){
-  const blocked='button,a,script,style,textarea,input,select,option,.glossaryWord,[contenteditable="true"],#glossaryModal';
-  function enhance(root){
-    if(!root)return;
-    const g=window.GLOSSARY||{};
-    const keys=Object.keys(g).filter(k=>String(k).trim().length>1).sort((a,b)=>b.length-a.length);
-    if(!keys.length)return;
-    const esc=s=>String(s).split('').map(ch=>'.^$*+?()[]{}|\\'.includes(ch)?'\\'+ch:ch).join('');
-    let re;
-    try{re=new RegExp('(?<![A-Za-z0-9])('+keys.map(esc).join('|')+')(?![A-Za-z0-9])','gi');}
-    catch(e){console.warn('Glossary regex unavailable',e);return;}
-    const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{
-      acceptNode(n){
-        if(!n.nodeValue||!n.nodeValue.trim())return NodeFilter.FILTER_REJECT;
-        if(n.parentElement?.closest(blocked))return NodeFilter.FILTER_REJECT;
-        return NodeFilter.FILTER_ACCEPT;
-      }
-    });
-    const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
-    nodes.forEach(n=>{
-      const value=n.nodeValue;re.lastIndex=0;if(!re.test(value))return;re.lastIndex=0;
-      const frag=document.createDocumentFragment();let last=0,m;
-      while((m=re.exec(value))){
-        if(m.index>last)frag.appendChild(document.createTextNode(value.slice(last,m.index)));
-        const b=document.createElement('button');b.type='button';b.className='glossaryWord';b.dataset.term=m[0];b.textContent=m[0];b.title='Click for definition';b.setAttribute('aria-label','Define '+m[0]);frag.appendChild(b);last=m.index+m[0].length;
-      }
-      if(last<value.length)frag.appendChild(document.createTextNode(value.slice(last)));
-      n.parentNode?.replaceChild(frag,n);
-    });
-  }
-  function refresh(){
-    document.querySelectorAll('#quizPanel .question,#quizPanel .casebox,#quizPanel .rat,#reviewPanel .reviewCard,#reviewPanel .studyNote,#reviewPanel .notesCard,#reviewPanel .noteCard').forEach(enhance);
-  }
-  window.forceGlossaryEnhance=enhance;
-  window.refreshStudyGlossary=refresh;
-  document.addEventListener('click',e=>{
-    const b=e.target?.closest?.('.glossaryWord');if(!b)return;
-    e.preventDefault();e.stopPropagation();window.showGlossary?.(b.dataset.term||b.textContent);
-  },true);
-  const quiz=document.getElementById('quizPanel');
-  if(quiz)new MutationObserver(()=>queueMicrotask(refresh)).observe(quiz,{childList:true,subtree:true});
-  const review=document.getElementById('reviewPanel');
-  if(review)new MutationObserver(()=>queueMicrotask(refresh)).observe(review,{childList:true,subtree:true});
-  if(typeof window.renderQuiz==='function'){
-    const original=window.renderQuiz;
-    window.renderQuiz=function(){const result=original.apply(this,arguments);refresh();return result;};
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',refresh,{once:true});else refresh();
-})();
-</script>`;
-if (!html.includes('id="questionGlossaryFinalPatch"')) {
-  html = html.replace('</body>', questionGlossaryPatch + '\\n</body>');
-}
 const finalCompactCss = `
 /* Compact two-column category layout: each module section sits beside the next. */
 #moduleSections{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;align-items:start!important;gap:18px!important}
