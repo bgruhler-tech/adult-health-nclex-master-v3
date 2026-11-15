@@ -263,13 +263,13 @@ const finalCompactCss = `
 }
 `;
 
-if (!html.includes('Keep module cards in a compact two-column layout')) {
+if (!html.includes('Compact two-column module cards across each home-screen category.')) {
  html = html.replace('</head>', '<style>\\n'+finalCompactCss+'\\n</style>\\n</head>');
 }
 
 
 /* sourceLinkedStudyNotesPatch: hydrate missing review sections from the question bank's own source IDs and rationales. */
-const sourceNoteInit = 'const MODULES=DATA.modules, BANKS=DATA.banks, REVIEWS=DATA.reviews;';
+const sourceNoteInit = 'const M=Object.fromEntries(MODULES.map(x=>[x.id,x]));';
 const sourceNoteRuntime = `
 Object.entries(BANKS).forEach(([mid, questions]) => {
   const groups = new Map();
@@ -296,10 +296,10 @@ peekDirectHTML = function(q){
   return '<div class="peekDirect"><div class="peekDirectEyebrow">🎯 WHAT THIS QUESTION IS ACTUALLY TESTING</div><h3>'+esc(c?.title||q.tag||answer)+'</h3><div class="peekDirectWhy"><b>Why this answer fits:</b> '+esc(rationale)+'</div><div class="peekDirectStudy"><div class="peekSourceId"><b>Card ID:</b> <code>'+esc(q.id)+'</code></div><div class="peekSourceId"><b>Source:</b> '+esc(sourceTitle)+'</div><div class="peekSourceId"><b>Source ID:</b> <code>'+esc(q.noteId||match?.noteId||'Not supplied')+'</code></div><div class="peekDirectNote"><b>Key point summary:</b><div class="peekStudyItem">'+summary+'</div></div></div></div>';
 };
 `;
-replaceOnce(sourceNoteInit, sourceNoteInit+'\n'+sourceNoteRuntime, 'source-linked study note initialization');
+if (!html.includes('sourceLinkedStudyNotesRuntime')) replaceOnce(sourceNoteInit, sourceNoteInit+'\n/* sourceLinkedStudyNotesRuntime */\n'+sourceNoteRuntime, 'source-linked study note initialization');
 const oldQuizMeta = '<div class="qmeta"><span class="qbadge">${esc(q.category||q.tag||"NCLEX")}</span><span class="qtype">';
 const newQuizMeta = '<div class="qmeta"><span class="qbadge">${esc(q.category||q.tag||"NCLEX")}</span><span class="qIdBadge">Card ID: ${esc(q.id)}</span><span class="qtype">';
-replaceOnce(oldQuizMeta,newQuizMeta,'quiz card ID');
+if (!html.includes('qIdBadge')) replaceOnce(oldQuizMeta,newQuizMeta,'quiz card ID');
 const sourceCardCss = '.qIdBadge{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:4px 8px;font-size:.72rem;font-weight:850;color:var(--green);background:rgba(15,107,97,.07);white-space:nowrap}.peekDirectStudy{margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}.peekSourceId{font-size:.82rem;color:var(--muted);margin:5px 0}.peekSourceId code{font-weight:850;color:var(--green)}.peekDirectNote{margin-top:9px;padding:10px 12px;border-radius:10px;background:rgba(15,107,97,.06);line-height:1.5}';
 replaceOnce('</head>','<style>'+sourceCardCss+'</style>\\n</head>','source card styles');
 
