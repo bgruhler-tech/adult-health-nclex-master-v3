@@ -107,7 +107,43 @@ replaceOnce(
   'initial selected chapter sync'
 );
 
-html = html.replace('Last updated: October 28, 2026 — Chapter 4 added', 'Last updated: November 14, 2026 — Chapter selector compacted');
+html = html.replace('Last updated: October 28, 2026 — Chapter 4 added', 'Last updated: November 15, 2026 — Compact lesson layout');
+const compactLessonCss = `
+/* Compact lesson browser: two cards per row, less vertical padding */
+.moduleGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.moduleCard{min-height:0;padding:13px;border-radius:15px;box-shadow:0 3px 12px rgba(34,54,56,.045)}
+.moduleCard h3{font-size:1.08rem;line-height:1.2;margin:6px 0}
+.moduleCard p{font-size:.82rem;line-height:1.35;margin:5px 0 8px}
+.moduleCard .badge{font-size:.66rem;padding:4px 7px}
+.moduleCard .metrics{gap:5px;margin:8px 0}
+.moduleCard .metric{padding:6px 4px;font-size:.68rem;border-radius:9px}
+.moduleCard .metric b{font-size:.88rem}
+.moduleCard .progress{margin:5px 0 9px}
+.moduleCard .cardActions{gap:6px}
+.moduleCard .cardActions .btn{flex:1 1 auto;padding:7px 8px;font-size:.76rem;min-width:0}
+#moduleSections>section{margin-bottom:18px}
+#moduleSections .sectionTitle{font-size:1.35rem;margin:18px 0 9px}
+#moduleSections .sectionHead .sectionTitle{margin-bottom:8px}
+@media(max-width:760px){
+  .moduleGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .moduleCard{padding:10px;border-radius:12px}
+  .moduleCard h3{font-size:.98rem}
+  .moduleCard p{font-size:.76rem;line-height:1.3}
+  .moduleCard .cardActions{display:grid;grid-template-columns:1fr;gap:5px}
+  .moduleCard .cardActions .btn{width:100%;padding:7px 6px;font-size:.72rem}
+  .moduleCard .metrics{grid-template-columns:repeat(3,minmax(0,1fr))}
+  #moduleSections>section{margin-bottom:13px}
+  #moduleSections .sectionTitle{font-size:1.18rem;margin:14px 0 7px}
+}
+@media(max-width:360px){
+  .moduleCard{padding:8px}
+  .moduleCard h3{font-size:.9rem}
+  .moduleCard p{font-size:.71rem}
+  .moduleCard .metric{font-size:.62rem}
+}
+`;
+replaceOnce('</head>', '<style>\\n'+compactLessonCss+'\\n</style>\\n</head>', 'compact lesson layout insertion');
+
 if (!html.includes('Sinusitis') || !html.includes('ch5-high-yield-immunity-metabolism')) {
   throw new Error('Preservation check failed. Refusing to publish.');
 }
