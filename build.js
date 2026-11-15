@@ -262,7 +262,7 @@ if (!html.includes('Sinusitis') || !html.includes('ch5-high-yield-immunity-metab
 }
 
 /* Final pass: dynamic glossary keys are built at runtime, after all chapter data is loaded. */
-const questionGlossaryPatch = String.raw\`<script id="questionGlossaryFinalPatch">
+const questionGlossaryPatch = String.raw`<script id="questionGlossaryFinalPatch">
 (function(){
   const blocked='button,a,script,style,textarea,input,select,option,.glossaryWord,[contenteditable="true"],#glossaryModal';
   function enhance(root){
@@ -312,7 +312,7 @@ const questionGlossaryPatch = String.raw\`<script id="questionGlossaryFinalPatch
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',refresh,{once:true});else refresh();
 })();
-</script>\`;
+</script>`;
 if (!html.includes('id="questionGlossaryFinalPatch"')) {
   html = html.replace('</body>', questionGlossaryPatch + '\\n</body>');
 }
