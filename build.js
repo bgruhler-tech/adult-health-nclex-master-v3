@@ -236,13 +236,13 @@ html = html.replace('</head>', '<style>'+glossaryStyle+'</style>\\n</head>');
 if (!html.includes('Sinusitis') || !html.includes('ch5-high-yield-immunity-metabolism')) throw new Error('Preservation check failed.');
 
 const finalCompactCss = `
-/* Compact two-column category layout: each module section sits beside the next. */
-#moduleSections{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;align-items:start!important;gap:18px!important}
-#moduleSections>section{min-width:0!important;margin:0 0 8px!important}
+/* Compact two-column module cards across each home-screen category. */
+#moduleSections{display:block!important}
+#moduleSections>section{min-width:0!important;margin:0 0 14px!important}
 #moduleSections .sectionHead{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
 #moduleSections .sectionHead .sectionTitle{font-size:1.18rem!important;line-height:1.2!important;margin:10px 0 8px!important;min-width:0}
 #moduleSections .sectionToggle{font-size:.68rem!important;white-space:nowrap;gap:5px;margin:0 0 7px auto}
-#moduleSections .moduleGrid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:8px!important}
+#moduleSections .moduleGrid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
 #moduleSections .moduleCard{min-width:0!important;width:100%!important;padding:12px!important;border-radius:15px!important;min-height:0!important}
 #moduleSections .moduleCard h3{font-size:1.02rem!important;line-height:1.22!important;margin:6px 0!important}
 #moduleSections .moduleCard p{font-size:.78rem!important;line-height:1.35!important;margin:5px 0 8px!important}
@@ -250,18 +250,58 @@ const finalCompactCss = `
 #moduleSections .moduleCard .metric{padding:6px 3px!important;font-size:.66rem!important}
 #moduleSections .moduleCard .progress{margin:5px 0 8px!important}
 #moduleSections .moduleCard .randomCheck{font-size:.68rem!important;margin:3px 0 6px!important}
-#moduleSections .moduleCard .cardActions{gap:5px!important}
+#moduleSections .moduleCard .cardActions{gap:5px!important;flex-wrap:wrap}
 #moduleSections .moduleCard .cardActions .btn{flex:1 1 0!important;min-width:0!important;padding:7px 6px!important;font-size:.7rem!important}
 @media(max-width:760px){
- #moduleSections{grid-template-columns:1fr!important;gap:12px!important}
  #moduleSections .sectionHead .sectionTitle{font-size:1.1rem!important}
  #moduleSections .moduleCard{padding:10px!important}
+ #moduleSections .moduleGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+}
+@media(max-width:360px){
+ #moduleSections .moduleCard{padding:8px!important}
+ #moduleSections .moduleGrid{gap:6px!important}
 }
 `;
 
 if (!html.includes('Keep module cards in a compact two-column layout')) {
  html = html.replace('</head>', '<style>\\n'+finalCompactCss+'\\n</style>\\n</head>');
 }
+
+
+/* sourceLinkedStudyNotesPatch: hydrate missing review sections from the question bank's own source IDs and rationales. */
+const sourceNoteInit = 'const MODULES=DATA.modules, BANKS=DATA.banks, REVIEWS=DATA.reviews;';
+const sourceNoteRuntime = `
+Object.entries(BANKS).forEach(([mid, questions]) => {
+  const groups = new Map();
+  (questions || []).forEach(q => { if(q.noteId){if(!groups.has(q.noteId))groups.set(q.noteId,[]);groups.get(q.noteId).push(q);} });
+  groups.forEach((cards,noteId) => {
+    const review=REVIEWS[mid]||(REVIEWS[mid]={title:M[mid]?.title||cards[0]?.noteTitle||'Study Notes',sections:[]});
+    if(review.sections.some(section=>Array.isArray(section)&&section[2]===noteId))return;
+    const items=cards.map((q,index)=>{
+      q.conceptTarget={...(q.conceptTarget||{}),sourceModuleId:mid,sourceNoteId:noteId,itemIndex:index,title:q.tag||q.question};
+      const correct=Array.isArray(q.answer)?q.answer.map(i=>q.rationales?.[i]||'').filter(Boolean).join(' '):(q.rationales?.[q.answer]||'');
+      const summary=String(correct||q.question||'Review the question and rationale.').replace(/^Correct\\.\\s*/i,'').trim();
+      return '<strong>'+esc(q.id)+'</strong> — '+esc(summary);
+    });
+    review.sections.push([cards[0]?.noteTitle||'Source Study Notes',items,noteId]);
+  });
+});
+peekDirectHTML = function(q){
+  if(!q)return '';
+  const c=getConceptForQuestion(q),match=noteSectionForQuestion(q);
+  const answer=Array.isArray(q.answer)?q.answer.map(i=>q.options[i]).join(', '):(q.options||[])[q.answer]||'Answer';
+  const rationale=Array.isArray(q.answer)?(q.rationales||[])[q.answer?.[0]]||'':(q.rationales||[])[q.answer]||'';
+  const summary=match?.items?.[match.itemIndex]||rationale||'Review the source section for this card.';
+  const sourceTitle=q.noteTitle||match?.h||'Linked study source';
+  return '<div class="peekDirect"><div class="peekDirectEyebrow">🎯 WHAT THIS QUESTION IS ACTUALLY TESTING</div><h3>'+esc(c?.title||q.tag||answer)+'</h3><div class="peekDirectWhy"><b>Why this answer fits:</b> '+esc(rationale)+'</div><div class="peekDirectStudy"><div class="peekSourceId"><b>Card ID:</b> <code>'+esc(q.id)+'</code></div><div class="peekSourceId"><b>Source:</b> '+esc(sourceTitle)+'</div><div class="peekSourceId"><b>Source ID:</b> <code>'+esc(q.noteId||match?.noteId||'Not supplied')+'</code></div><div class="peekDirectNote"><b>Key point summary:</b><div class="peekStudyItem">'+summary+'</div></div></div></div>';
+};
+`;
+replaceOnce(sourceNoteInit, sourceNoteInit+'\\n'+sourceNoteRuntime, 'source-linked study note initialization');
+const oldQuizMeta = '<div class="qmeta"><span class="qbadge">\${esc(q.category||q.tag||"NCLEX")}</span><span class="qtype">';
+const newQuizMeta = '<div class="qmeta"><span class="qbadge">\${esc(q.category||q.tag||"NCLEX")}</span><span class="qIdBadge">Card ID: \${esc(q.id)}</span><span class="qtype">';
+replaceOnce(oldQuizMeta,newQuizMeta,'quiz card ID');
+const sourceCardCss = '.qIdBadge{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:4px 8px;font-size:.72rem;font-weight:850;color:var(--green);background:rgba(15,107,97,.07);white-space:nowrap}.peekDirectStudy{margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}.peekSourceId{font-size:.82rem;color:var(--muted);margin:5px 0}.peekSourceId code{font-weight:850;color:var(--green)}.peekDirectNote{margin-top:9px;padding:10px 12px;border-radius:10px;background:rgba(15,107,97,.06);line-height:1.5}';
+replaceOnce('</head>','<style>'+sourceCardCss+'</style>\\n</head>','source card styles');
 
 fs.writeFileSync(file, html);
 fs.writeFileSync('index.html.gz', zlib.gzipSync(Buffer.from(html, 'utf8'), { level: 9, mtime: 0 }));
