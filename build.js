@@ -154,6 +154,108 @@ const compactLessonCss = `
 `;
 replaceOnce('</head>', '<style>\n'+compactLessonCss+'\n</style>\n</head>', 'compact lesson layout insertion');
 
+
+const globalGlossaryPatch = String.raw`
+<script id="glossaryDynamicPatch">
+(function(){
+  const excluded='script,style,noscript,textarea,input,select,option,button,.glossaryWord,#glossaryModal,header,nav,[contenteditable="true"],.chapterSwitcher,.modal,.toast';
+  function keys(){
+    return Object.keys(window.GLOSSARY||{}).filter(k=>String(k).trim().length>1).sort((a,b)=>b.length-a.length);
+  }
+  function makeRegex(){
+    const all=keys();
+    if(!all.length)return null;
+    const escaped=all.map(s=>String(s).replace(/[\\^$.*+?()[\]{}|/-]/g,'\\if (!html.includes('Sinusitis') || !html.includes('ch5-high-yield-immunity-metabolism')) {'));
+    try{return new RegExp('(?<![A-Za-z0-9])('+escaped.join('|')+')(?![A-Za-z0-9])','gi');}
+    catch(e){console.error('Glossary matcher could not be built',e);return null;}
+  }
+  function enhance(root){
+    if(!root)return;
+    const re=makeRegex();
+    if(!re)return;
+    const scope=root.nodeType===Node.TEXT_NODE?root.parentElement:root;
+    if(!scope)return;
+    const walker=document.createTreeWalker(scope,NodeFilter.SHOW_TEXT,{
+      acceptNode(node){
+        if(!node.nodeValue||!node.nodeValue.trim())return NodeFilter.FILTER_REJECT;
+        const p=node.parentElement;
+        if(!p||p.closest(excluded))return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    const nodes=[];
+    if(root.nodeType===Node.TEXT_NODE){
+      if(walker.currentNode!==root && !root.parentElement?.closest(excluded))nodes.push(root);
+    }else{
+      while(walker.nextNode())nodes.push(walker.currentNode);
+    }
+    nodes.forEach(node=>{
+      const value=node.nodeValue;
+      re.lastIndex=0;
+      if(!re.test(value)){re.lastIndex=0;return;}
+      re.lastIndex=0;
+      const fragment=document.createDocumentFragment();
+      let cursor=0,match;
+      while((match=re.exec(value))){
+        if(match.index>cursor)fragment.appendChild(document.createTextNode(value.slice(cursor,match.index)));
+        const term=match[0],button=document.createElement('button');
+        button.type='button';button.className='glossaryWord';button.dataset.term=term;
+        button.textContent=term;button.title='Tap to view definition';
+        button.setAttribute('aria-label','Define '+term);
+        fragment.appendChild(button);cursor=match.index+term.length;
+      }
+      if(cursor<value.length)fragment.appendChild(document.createTextNode(value.slice(cursor)));
+      node.parentNode?.replaceChild(fragment,node);
+    });
+  }
+  window.showGlossary=function(term){
+    const raw=String(term||'').trim(),g=window.GLOSSARY||{};
+    const key=Object.keys(g).find(k=>k.toLowerCase()===raw.toLowerCase());
+    const value=key?g[key]:null,modal=document.getElementById('glossaryModal');
+    if(!value||!modal)return;
+    document.getElementById('glossaryTitle').textContent=key;
+    document.getElementById('glossaryFull').textContent=value[0]||key;
+    document.getElementById('glossaryDef').textContent=value[1]||'';
+    document.getElementById('glossaryWhy').textContent=value[2]||'';
+    modal.classList.remove('hidden');modal.style.display='flex';
+    document.body.style.overflow='hidden';
+  };
+  window.enhanceGlossary=enhance;
+  document.addEventListener('click',function(event){
+    const word=event.target?.closest?.('.glossaryWord');
+    if(!word)return;
+    event.preventDefault();event.stopPropagation();
+    window.showGlossary(word.dataset.term||word.textContent);
+  },true);
+  let queued=false;
+  function refresh(){
+    if(queued)return;queued=true;
+    queueMicrotask(()=>{queued=false;enhance(document.body);});
+  }
+  function start(){
+    enhance(document.body);
+    if(!window.__globalGlossaryObserver){
+      window.__globalGlossaryObserver=new MutationObserver(records=>{
+        if(records.some(r=>r.addedNodes.length))refresh();
+      });
+      window.__globalGlossaryObserver.observe(document.body,{childList:true,subtree:true});
+    }
+  }
+  window.refreshStudyGlossary=refresh;
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});
+  else start();
+})();
+</script>`;
+const globalGlossaryAnchor = /<script id="glossaryDynamicPatch">[\\s\\S]*?<\\/script>/;
+if (!globalGlossaryAnchor.test(html)) throw new Error('Global glossary renderer anchor missing; refusing unsafe build.');
+html = html.replace(globalGlossaryAnchor, globalGlossaryPatch);
+Object.assign(window.GLOSSARY, {
+  "systemic":["Systemic","A term describing something that affects or involves the body as a whole rather than one isolated area.","In nursing, systemic findings suggest broader body involvement. Systemic lupus erythematosus is an autoimmune disease that can affect multiple organs."],
+  "systemic lupus erythematosus":["Systemic Lupus Erythematosus (SLE)","A chronic systemic autoimmune disease that can affect multiple organs, including the skin, joints, kidneys, blood cells, heart, lungs, and nervous system.","Assess for fatigue, joint pain, photosensitive rash, oral ulcers, cytopenias, and renal involvement. ANA is sensitive but not specific; anti-dsDNA and anti-Smith antibodies are more specific. Monitor urinalysis and renal function; reinforce sun protection, prescribed treatment, and infection precautions when immunosuppressed."],
+  "lupus":["Lupus (Systemic Lupus Erythematosus, SLE)","An autoimmune disease that causes inflammation and can affect multiple organs.","Assess skin, joint, renal, blood, cardiac, pulmonary, and neurologic manifestations. Reinforce sun protection, medication adherence, and monitoring for organ involvement."],
+  "erythematosus":["Erythematosus","A medical adjective relating to redness or erythema; it is part of the name systemic lupus erythematosus.","In SLE, it is part of the disease name and is associated with inflammatory skin findings such as a malar rash."]
+});
+
 if (!html.includes('Sinusitis') || !html.includes('ch5-high-yield-immunity-metabolism')) {
   throw new Error('Preservation check failed. Refusing to publish.');
 }
