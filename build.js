@@ -260,6 +260,84 @@ html = html.slice(0, globalGlossaryStart) + globalGlossaryPatch + html.slice(glo
 if (!html.includes('Sinusitis') || !html.includes('ch5-high-yield-immunity-metabolism')) {
   throw new Error('Preservation check failed. Refusing to publish.');
 }
+
+/* Final pass: dynamic glossary keys are built at runtime, after all chapter data is loaded. */
+const questionGlossaryPatch = String.raw\`<script id="questionGlossaryFinalPatch">
+(function(){
+  const blocked='button,a,script,style,textarea,input,select,option,.glossaryWord,[contenteditable="true"],#glossaryModal';
+  function enhance(root){
+    if(!root)return;
+    const g=window.GLOSSARY||{};
+    const keys=Object.keys(g).filter(k=>String(k).trim().length>1).sort((a,b)=>b.length-a.length);
+    if(!keys.length)return;
+    const esc=s=>String(s).replace(/[.*+?^\${}()|[\\]\\\\]/g,'\\\\fs.writeFileSync(file, html);');
+    let re;
+    try{re=new RegExp('(?<![A-Za-z0-9])('+keys.map(esc).join('|')+')(?![A-Za-z0-9])','gi');}
+    catch(e){console.warn('Glossary regex unavailable',e);return;}
+    const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{
+      acceptNode(n){
+        if(!n.nodeValue||!n.nodeValue.trim())return NodeFilter.FILTER_REJECT;
+        if(n.parentElement?.closest(blocked))return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+    nodes.forEach(n=>{
+      const value=n.nodeValue;re.lastIndex=0;if(!re.test(value))return;re.lastIndex=0;
+      const frag=document.createDocumentFragment();let last=0,m;
+      while((m=re.exec(value))){
+        if(m.index>last)frag.appendChild(document.createTextNode(value.slice(last,m.index)));
+        const b=document.createElement('button');b.type='button';b.className='glossaryWord';b.dataset.term=m[0];b.textContent=m[0];b.title='Click for definition';b.setAttribute('aria-label','Define '+m[0]);frag.appendChild(b);last=m.index+m[0].length;
+      }
+      if(last<value.length)frag.appendChild(document.createTextNode(value.slice(last)));
+      n.parentNode?.replaceChild(frag,n);
+    });
+  }
+  function refresh(){
+    document.querySelectorAll('#quizPanel .question,#quizPanel .casebox,#quizPanel .rat,#reviewPanel .reviewCard,#reviewPanel .studyNote,#reviewPanel .notesCard,#reviewPanel .noteCard').forEach(enhance);
+  }
+  window.forceGlossaryEnhance=enhance;
+  window.refreshStudyGlossary=refresh;
+  document.addEventListener('click',e=>{
+    const b=e.target?.closest?.('.glossaryWord');if(!b)return;
+    e.preventDefault();e.stopPropagation();window.showGlossary?.(b.dataset.term||b.textContent);
+  },true);
+  const quiz=document.getElementById('quizPanel');
+  if(quiz)new MutationObserver(()=>queueMicrotask(refresh)).observe(quiz,{childList:true,subtree:true});
+  const review=document.getElementById('reviewPanel');
+  if(review)new MutationObserver(()=>queueMicrotask(refresh)).observe(review,{childList:true,subtree:true});
+  if(typeof window.renderQuiz==='function'){
+    const original=window.renderQuiz;
+    window.renderQuiz=function(){const result=original.apply(this,arguments);refresh();return result;};
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',refresh,{once:true});else refresh();
+})();
+</script>\`;
+if (!html.includes('id="questionGlossaryFinalPatch"')) {
+  html = html.replace('</body>', questionGlossaryPatch + '\\n</body>');
+}
+const finalCompactCss = \`
+/* Keep module cards in a compact two-column layout; category controls stay aligned. */
+#moduleSections .moduleGrid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+#moduleSections .sectionHead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:nowrap}
+#moduleSections .sectionHead .sectionTitle{font-size:1.25rem;margin:14px 0 8px;min-width:0}
+#moduleSections .sectionToggle{font-size:.72rem;white-space:nowrap;gap:5px;margin-left:auto}
+#moduleSections .moduleCard{min-width:0;padding:12px}
+#moduleSections .moduleCard .randomCheck{margin:4px 0 6px;font-size:.72rem}
+@media(max-width:560px){
+ #moduleSections .moduleGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:7px!important}
+ #moduleSections .moduleCard{padding:9px}
+ #moduleSections .moduleCard h3{font-size:.92rem}
+ #moduleSections .moduleCard p{font-size:.72rem}
+ #moduleSections .sectionHead{gap:6px}
+ #moduleSections .sectionHead .sectionTitle{font-size:1.05rem}
+ #moduleSections .sectionToggle{font-size:.64rem}
+}
+\`;
+if (!html.includes('Keep module cards in a compact two-column layout')) {
+ html = html.replace('</head>', '<style>\\n'+finalCompactCss+'\\n</style>\\n</head>');
+}
+
 fs.writeFileSync(file, html);
 fs.writeFileSync('index.html.gz', zlib.gzipSync(Buffer.from(html, 'utf8'), { level: 9, mtime: 0 }));
 console.log('Built compact chapter selector and gzip HTML output.');
