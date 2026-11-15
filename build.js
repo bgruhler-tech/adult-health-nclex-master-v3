@@ -270,7 +270,7 @@ const questionGlossaryPatch = String.raw`<script id="questionGlossaryFinalPatch"
     const g=window.GLOSSARY||{};
     const keys=Object.keys(g).filter(k=>String(k).trim().length>1).sort((a,b)=>b.length-a.length);
     if(!keys.length)return;
-    const esc=s=>String(s).replace(/[.*+?^\${}()|[\\]\\\\]/g,'\\\\fs.writeFileSync(file, html);');
+    const esc=s=>String(s).split('').map(ch=>'.^$*+?()[]{}|\\'.includes(ch)?'\\'+ch:ch).join('');
     let re;
     try{re=new RegExp('(?<![A-Za-z0-9])('+keys.map(esc).join('|')+')(?![A-Za-z0-9])','gi');}
     catch(e){console.warn('Glossary regex unavailable',e);return;}
