@@ -1,0 +1,487 @@
+{
+  "systemic": [
+    "Systemic",
+    "Affecting or involving the body as a whole rather than one isolated organ or area.",
+    "SLE is systemic because it can affect the skin, joints, kidneys, blood, lungs, heart, and nervous system."
+  ],
+  "systemic lupus erythematosus": [
+    "Systemic Lupus Erythematosus (SLE)",
+    "A chronic autoimmune disease in which the immune system makes antibodies that cause inflammation and may damage multiple organs, especially the skin, joints, kidneys, blood cells, heart, lungs, and nervous system.",
+    "Look for fatigue, joint pain, photosensitive rash, oral ulcers, low blood counts, and kidney involvement. ANA is sensitive but not specific; anti-dsDNA and anti-Smith are more specific. Monitor urine and renal function, reinforce sun protection and medication adherence, and teach infection precautions when immunosuppressed."
+  ],
+  "SLE": [
+    "Systemic Lupus Erythematosus (SLE)",
+    "The standard abbreviation for systemic lupus erythematosus, a chronic autoimmune disease that can affect multiple organs.",
+    "Assess for skin and joint symptoms, fatigue, cytopenias, and kidney involvement. ANA is sensitive but not diagnostic alone; anti-dsDNA, anti-Smith, complement levels, urinalysis, and renal function help evaluate disease activity."
+  ],
+  "lupus": [
+    "Lupus (Systemic Lupus Erythematosus)",
+    "An autoimmune disease that causes inflammation; systemic lupus erythematosus is the best-known systemic form and can affect multiple organs.",
+    "Important nursing concerns include photosensitivity, joint pain, fatigue, rash, low blood counts, and lupus nephritis. Reinforce sun protection and monitoring for organ involvement."
+  ],
+  "erythematosus": [
+    "Erythematosus",
+    "A medical adjective associated with erythema (redness); it is part of the name systemic lupus erythematosus.",
+    "In SLE, the term appears in the disease name and is associated with inflammatory skin findings such as a malar rash."
+  ],
+  "lupus nephritis": [
+    "Lupus Nephritis",
+    "Inflammation of the kidneys caused by systemic lupus erythematosus.",
+    "Foamy urine, proteinuria, blood in the urine, edema, hypertension, or rising creatinine may signal kidney involvement. Monitor urinalysis and renal function."
+  ],
+  "photosensitivity": [
+    "Photosensitivity",
+    "An abnormal skin reaction to sunlight or ultraviolet light.",
+    "Sun exposure can trigger or worsen lupus skin symptoms. Teach protective clothing, sunscreen, and avoiding intense UV exposure."
+  ],
+  "malar rash": [
+    "Malar Rash",
+    "A red rash across the cheeks and bridge of the nose, sometimes called a butterfly rash.",
+    "It is a possible finding in SLE but is not present in every client and is not diagnostic by itself."
+  ],
+  "ANA": [
+    "Antinuclear Antibody (ANA)",
+    "A blood test that detects antibodies reacting with structures in the cell nucleus.",
+    "ANA is sensitive for SLE but not specific; a positive result can occur in other conditions and some healthy people. Interpret with clinical findings."
+  ],
+  "anti-dsDNA": [
+    "Anti–Double-Stranded DNA Antibody",
+    "An autoantibody directed against double-stranded DNA that is relatively specific for SLE.",
+    "It can support an SLE diagnosis and may rise with disease activity, particularly kidney involvement."
+  ],
+  "anti-Smith": [
+    "Anti-Smith (Anti-Sm) Antibody",
+    "An autoantibody highly specific for systemic lupus erythematosus, although not present in every client.",
+    "A positive result supports SLE; it is not a reliable measure of disease activity by itself."
+  ],
+  "cytopenia": [
+    "Cytopenia",
+    "A lower-than-normal number of one or more types of blood cells.",
+    "SLE can cause anemia, leukopenia, or thrombocytopenia. Monitor CBC and assess for fatigue, infection, bruising, or bleeding."
+  ],
+  "proteinuria": [
+    "Proteinuria",
+    "An abnormal amount of protein in the urine.",
+    "It can indicate kidney damage, including lupus nephritis. Monitor urine protein and renal function."
+  ],
+  "Addison disease": [
+    "Addison Disease (Primary Adrenal Insufficiency)",
+    "A disorder in which the adrenal cortex cannot produce enough cortisol and often not enough aldosterone.",
+    "Common findings include fatigue, weight loss, hypotension, hyperpigmentation, hyponatremia, hyperkalemia, and sometimes hypoglycemia. Clients need hormone replacement and stress-dose teaching."
+  ],
+  "primary adrenal insufficiency": [
+    "Primary Adrenal Insufficiency",
+    "Failure of the adrenal cortex to produce adequate cortisol and often aldosterone; Addison disease is the usual chronic form.",
+    "Low cortisol with high ACTH is typical. Low aldosterone can cause sodium loss, potassium retention, dehydration, and hypotension."
+  ],
+  "Addisonian crisis": [
+    "Addisonian Crisis (Adrenal Crisis)",
+    "A life-threatening acute lack of adrenal hormones, often triggered by infection, surgery, trauma, vomiting, or missed steroid replacement.",
+    "Suspect severe hypotension, weakness, vomiting, abdominal pain, confusion, hyponatremia, hyperkalemia, or hypoglycemia. Emergency treatment includes IV hydrocortisone and isotonic fluids."
+  ],
+  "adrenal crisis": [
+    "Adrenal Crisis",
+    "A life-threatening state caused by inadequate cortisol during physiologic stress or acute adrenal failure.",
+    "Recognize shock, severe weakness, vomiting, abdominal pain, altered mental status, and electrolyte/glucose abnormalities. Do not delay emergency glucocorticoids and IV fluids."
+  ],
+  "ACTH stimulation test": [
+    "ACTH Stimulation Test",
+    "A test that measures how the adrenal glands respond to synthetic adrenocorticotropic hormone.",
+    "Cortisol is measured before and after ACTH. An inadequate cortisol rise supports adrenal insufficiency."
+  ],
+  "ACTH": [
+    "Adrenocorticotropic Hormone (ACTH)",
+    "A pituitary hormone that stimulates the adrenal cortex to produce cortisol.",
+    "ACTH is usually elevated in primary adrenal insufficiency and low or inappropriately normal in secondary adrenal insufficiency."
+  ],
+  "adrenalectomy": [
+    "Adrenalectomy",
+    "Surgical removal of one or both adrenal glands.",
+    "After surgery, monitor blood pressure, fluid/electrolyte balance, glucose, and signs of adrenal insufficiency. Bilateral removal requires lifelong hormone replacement."
+  ],
+  "cortisol": [
+    "Cortisol",
+    "A glucocorticoid hormone made by the adrenal cortex that supports the stress response, blood glucose, blood pressure, and regulation of inflammation.",
+    "Too little cortisol can cause adrenal insufficiency; too much can cause Cushing syndrome. Long-term steroid therapy can suppress natural cortisol production."
+  ],
+  "aldosterone": [
+    "Aldosterone",
+    "A mineralocorticoid hormone that helps the kidneys retain sodium and water and excrete potassium.",
+    "Low aldosterone can cause hypotension, dehydration, hyponatremia, and hyperkalemia."
+  ],
+  "Cushing syndrome": [
+    "Cushing Syndrome",
+    "A condition caused by prolonged exposure to excessive cortisol, from the body's production or from glucocorticoid medication.",
+    "Findings may include central weight gain, rounded face, thin skin, easy bruising, muscle weakness, hypertension, hyperglycemia, and increased infection risk."
+  ],
+  "acromegaly": [
+    "Acromegaly",
+    "A disorder caused by excess growth hormone after the growth plates have closed, usually from a pituitary tumor.",
+    "It causes gradual enlargement of hands, feet, jaw, and facial features and can contribute to diabetes, hypertension, sleep apnea, and cardiac disease."
+  ],
+  "gigantism": [
+    "Gigantism",
+    "Excess growth hormone before the growth plates close, causing unusually rapid linear growth and very tall stature.",
+    "Unlike acromegaly, gigantism occurs during childhood/adolescence while bones can still lengthen."
+  ],
+  "Graves disease": [
+    "Graves Disease",
+    "An autoimmune disorder in which antibodies stimulate the thyroid gland, causing hyperthyroidism.",
+    "Possible findings include weight loss, heat intolerance, tremor, tachycardia, anxiety, goiter, and sometimes exophthalmos."
+  ],
+  "thyroid storm": [
+    "Thyroid Storm",
+    "A life-threatening, extreme worsening of thyrotoxicosis with severe hypermetabolism.",
+    "Suspect high fever, marked tachycardia, agitation or delirium, vomiting/diarrhea, and possible heart failure. It is an emergency."
+  ],
+  "myxedema coma": [
+    "Myxedema Coma",
+    "A life-threatening decompensation of severe hypothyroidism, often triggered by infection, cold exposure, or sedatives.",
+    "Findings include hypothermia, bradycardia, hypotension, hypoventilation, hyponatremia, and decreased level of consciousness."
+  ],
+  "methimazole": [
+    "Methimazole",
+    "An antithyroid thionamide medication that reduces thyroid hormone synthesis.",
+    "Teach the client to report fever or sore throat immediately because agranulocytosis is a rare but serious risk."
+  ],
+  "propylthiouracil": [
+    "Propylthiouracil (PTU)",
+    "An antithyroid medication that reduces thyroid hormone synthesis and decreases conversion of T4 to active T3.",
+    "A serious risk is liver injury; report jaundice, dark urine, right-upper-quadrant pain, or severe fatigue. Fever or sore throat may signal agranulocytosis."
+  ],
+  "PTU": [
+    "Propylthiouracil (PTU)",
+    "An antithyroid medication that blocks thyroid hormone synthesis and reduces peripheral conversion of T4 to T3.",
+    "Monitor for severe liver injury and agranulocytosis."
+  ],
+  "levothyroxine": [
+    "Levothyroxine",
+    "A synthetic form of thyroid hormone (T4) used to treat hypothyroidism.",
+    "Take consistently on an empty stomach, usually 30–60 minutes before breakfast, and separate from calcium or iron by about 4 hours. Monitor TSH."
+  ],
+  "hyperparathyroidism": [
+    "Hyperparathyroidism",
+    "Excess parathyroid hormone activity, usually causing elevated blood calcium.",
+    "Possible findings include kidney stones, bone pain, constipation, weakness, and confusion. Monitor calcium and renal status."
+  ],
+  "hypoparathyroidism": [
+    "Hypoparathyroidism",
+    "Insufficient parathyroid hormone, causing low blood calcium and often high phosphate.",
+    "Watch for perioral tingling, muscle cramps, tetany, positive Chvostek or Trousseau signs, seizures, and laryngospasm."
+  ],
+  "hypocalcemia": [
+    "Hypocalcemia",
+    "A lower-than-normal calcium level in the blood.",
+    "Can cause numbness, tingling, muscle cramps, tetany, seizures, and laryngospasm. IV calcium gluconate may be required for severe symptomatic cases."
+  ],
+  "cinacalcet": [
+    "Cinacalcet",
+    "A calcimimetic medication that lowers parathyroid hormone secretion and serum calcium.",
+    "Monitor calcium because hypocalcemia can occur. Teach the client to report tingling, cramps, or muscle spasms."
+  ],
+  "diabetes insipidus": [
+    "Diabetes Insipidus (DI)",
+    "A disorder of water balance in which the kidneys cannot conserve water because of inadequate ADH action, causing large amounts of dilute urine.",
+    "Expect polyuria, intense thirst, low urine specific gravity, and possible dehydration/hypernatremia. Monitor intake/output, sodium, weight, and urine concentration."
+  ],
+  "central DI": [
+    "Central Diabetes Insipidus",
+    "Diabetes insipidus caused by inadequate production or release of antidiuretic hormone from the hypothalamus/posterior pituitary.",
+    "Desmopressin replaces ADH activity. Monitor urine output, urine concentration, sodium, and for water retention/hyponatremia."
+  ],
+  "nephrogenic DI": [
+    "Nephrogenic Diabetes Insipidus",
+    "Diabetes insipidus in which the kidneys do not respond appropriately to ADH.",
+    "Desmopressin is usually ineffective. Review causes such as lithium or kidney disease; treatment may include adequate water and selected medications."
+  ],
+  "SIADH": [
+    "Syndrome of Inappropriate Antidiuretic Hormone (SIADH)",
+    "Excess ADH activity causes the body to retain water, diluting serum sodium and producing concentrated urine.",
+    "Expect low serum sodium and osmolality with inappropriately concentrated urine and often low urine output. Monitor neurologic status; fluid restriction is common, and severe symptoms may require carefully controlled hypertonic saline."
+  ],
+  "diabetic ketoacidosis": [
+    "Diabetic Ketoacidosis (DKA)",
+    "An acute complication of diabetes caused by severe insulin deficiency, leading to hyperglycemia, ketone production, and metabolic acidosis.",
+    "Assess glucose, ketones, anion gap, pH/bicarbonate, hydration, and potassium. Give IV fluids and insulin as prescribed; potassium must be monitored closely."
+  ],
+  "DKA": [
+    "Diabetic Ketoacidosis (DKA)",
+    "An acute diabetic emergency involving hyperglycemia, ketone production, dehydration, and metabolic acidosis.",
+    "Monitor glucose, potassium, ketones, anion gap, and acid-base status. Insulin shifts potassium into cells, so potassium must be assessed and corrected as ordered."
+  ],
+  "hyperosmolar hyperglycemic state": [
+    "Hyperosmolar Hyperglycemic State (HHS)",
+    "A severe diabetic emergency characterized by profound hyperglycemia, hyperosmolality, and dehydration, usually with little or no significant ketoacidosis.",
+    "Priorities include fluid replacement, electrolyte monitoring, and insulin as prescribed. Assess mental status and circulation."
+  ],
+  "hypoglycemia": [
+    "Hypoglycemia",
+    "A blood glucose level that is lower than the safe target; in many adults, below 70 mg/dL is the alert threshold.",
+    "Symptoms can include sweating, tremor, hunger, palpitations, confusion, or seizures. Treat promptly using the client's ability to swallow and the prescribed protocol."
+  ],
+  "diabetic neuropathy": [
+    "Diabetic Neuropathy",
+    "Nerve damage caused by prolonged diabetes, often affecting sensation in the feet and legs.",
+    "Loss of protective sensation increases risk of unnoticed injury and ulceration. Teach daily foot inspection and protective footwear."
+  ],
+  "desmopressin": [
+    "Desmopressin (DDAVP)",
+    "A synthetic medication that acts like antidiuretic hormone, reducing urine production.",
+    "Used for central DI. Monitor urine output, weight, sodium, and signs of water retention or hyponatremia."
+  ],
+  "vasopressin antagonists": [
+    "Vasopressin Antagonists (Vaptans)",
+    "Medications that block ADH receptors, allowing the kidneys to excrete free water and raise serum sodium in selected cases of hyponatremia.",
+    "Monitor sodium correction closely because overly rapid correction can cause osmotic demyelination. Tolvaptan has important liver and monitoring restrictions."
+  ],
+  "urine specific gravity": [
+    "Urine Specific Gravity",
+    "A measure of how concentrated or dilute urine is compared with water.",
+    "Very low values can occur with DI; concentrated urine is expected with SIADH. Interpret with fluid status and serum sodium/osmolality."
+  ],
+  "water-deprivation test": [
+    "Water-Deprivation Test",
+    "A supervised test that withholds fluids for a controlled period to evaluate the body's ability to concentrate urine.",
+    "It helps distinguish causes of polyuria such as DI and primary polydipsia. It requires close monitoring and must not be attempted at home."
+  ],
+  "hyponatremia": [
+    "Hyponatremia",
+    "A lower-than-normal serum sodium concentration, often below 135 mEq/L.",
+    "Severe or rapidly developing hyponatremia can cause headache, confusion, seizures, and coma. Correct sodium carefully to avoid osmotic demyelination."
+  ],
+  "Guillain-Barré syndrome": [
+    "Guillain-Barré Syndrome (GBS)",
+    "An acute immune-mediated disorder in which the immune system attacks peripheral nerves, often causing ascending weakness and reduced reflexes.",
+    "The major danger is respiratory muscle weakness and autonomic instability. Monitor respiratory function, swallowing, heart rate, and blood pressure; IVIG or plasma exchange may be prescribed."
+  ],
+  "myasthenia gravis": [
+    "Myasthenia Gravis (MG)",
+    "An autoimmune disorder affecting communication between nerves and skeletal muscles, causing fluctuating weakness that worsens with activity.",
+    "Monitor swallowing, speech, respiratory effort, and fatigue. Time pyridostigmine so medication effect supports meals and activity as prescribed."
+  ],
+  "myasthenic crisis": [
+    "Myasthenic Crisis",
+    "Severe worsening of myasthenia gravis that causes respiratory muscle weakness and may lead to respiratory failure.",
+    "Prioritize airway and ventilation, monitor respiratory function and swallowing, and prepare for urgent escalation."
+  ],
+  "cholinergic crisis": [
+    "Cholinergic Crisis",
+    "Excess acetylcholine activity, often from too much acetylcholinesterase inhibitor medication, causing weakness and muscarinic symptoms.",
+    "Look for increased secretions, salivation, tearing, diarrhea, abdominal cramps, vomiting, bradycardia, and weakness. It requires urgent evaluation."
+  ],
+  "pyridostigmine": [
+    "Pyridostigmine",
+    "An acetylcholinesterase inhibitor that increases acetylcholine at the neuromuscular junction to improve muscle strength in myasthenia gravis.",
+    "Give on schedule and coordinate doses with meals when swallowing is difficult. Watch for excessive secretions, diarrhea, bradycardia, or worsening weakness."
+  ],
+  "rheumatoid arthritis": [
+    "Rheumatoid Arthritis (RA)",
+    "A chronic systemic autoimmune disease that causes inflammatory joint swelling, pain, stiffness, and progressive joint damage.",
+    "Morning stiffness and symmetric small-joint involvement are common. DMARDs reduce disease progression; fever or sore throat while immunosuppressed needs prompt follow-up."
+  ],
+  "rheumatoid factor": [
+    "Rheumatoid Factor (RF)",
+    "An autoantibody that may be present in rheumatoid arthritis and some other diseases.",
+    "A positive RF supports but does not prove RA; some people with RA are RF-negative, and RF can be positive in other conditions."
+  ],
+  "DMARDs": [
+    "Disease-Modifying Antirheumatic Drugs (DMARDs)",
+    "Medications that reduce inflammation and slow the progression of rheumatoid arthritis and other inflammatory rheumatic diseases.",
+    "They are not simply pain relievers. Monitor for infection, blood-count or liver abnormalities as appropriate to the specific drug."
+  ],
+  "methotrexate": [
+    "Methotrexate",
+    "An antimetabolite immunosuppressant commonly used weekly at low doses as a disease-modifying drug for rheumatoid arthritis.",
+    "For RA it is generally taken once weekly, not daily. Monitor CBC and liver function; report fever, sore throat, mouth sores, unusual bruising, or shortness of breath."
+  ],
+  "hydroxychloroquine": [
+    "Hydroxychloroquine",
+    "An antimalarial medication with immunomodulatory effects used for conditions such as SLE and rheumatoid arthritis.",
+    "It can reduce lupus flares and joint/skin symptoms. Baseline and regular retinal examinations are important because retinal toxicity can cause vision loss."
+  ],
+  "Sjögren syndrome": [
+    "Sjögren Syndrome",
+    "An autoimmune disease that commonly damages moisture-producing glands, causing dry eyes and dry mouth.",
+    "Assess for dental problems, difficulty swallowing dry foods, eye irritation, and systemic manifestations."
+  ],
+  "angioedema": [
+    "Angioedema",
+    "Rapid swelling of deeper skin or mucosal tissues, often involving the lips, tongue, face, or throat.",
+    "Tongue or throat swelling, voice change, stridor, or difficulty breathing is an airway emergency. ACE inhibitors can cause angioedema even without hives."
+  ],
+  "anaphylaxis": [
+    "Anaphylaxis",
+    "A rapid, severe, potentially life-threatening systemic allergic reaction that can impair breathing and circulation.",
+    "Give IM epinephrine promptly in the mid-outer thigh, activate emergency response, support airway/breathing/circulation, and repeat epinephrine as directed. Antihistamines are not a substitute for epinephrine."
+  ],
+  "epinephrine": [
+    "Epinephrine",
+    "A catecholamine medication that stimulates alpha- and beta-adrenergic receptors, increasing vascular tone, supporting cardiac output, and opening the airways.",
+    "IM epinephrine is first-line treatment for anaphylaxis. Administer promptly in the mid-outer thigh; monitor airway, breathing, circulation, blood pressure, and response."
+  ],
+  "antihistamines": [
+    "Antihistamines",
+    "Medications that block histamine receptors and reduce symptoms such as itching, sneezing, hives, and runny nose.",
+    "They may help skin/nasal symptoms in allergic reactions but do not treat airway obstruction or shock in anaphylaxis; epinephrine is first-line."
+  ],
+  "immunosuppressants": [
+    "Immunosuppressants",
+    "Medications that reduce immune-system activity to treat autoimmune disease or prevent transplant rejection.",
+    "They increase infection risk and may affect blood counts, liver, or kidneys depending on the drug. Teach infection precautions and prompt reporting of fever."
+  ],
+  "calcineurin inhibitors": [
+    "Calcineurin Inhibitors",
+    "Immunosuppressant medications such as tacrolimus and cyclosporine that reduce T-cell activation by blocking calcineurin signaling.",
+    "Monitor drug levels when ordered, kidney function, blood pressure, electrolytes, and infection risk. These drugs can be nephrotoxic."
+  ],
+  "monoclonal antibodies": [
+    "Monoclonal Antibodies",
+    "Laboratory-produced antibodies designed to bind a specific target, such as an immune-cell receptor or inflammatory protein.",
+    "They are used in autoimmune disease, cancer, and other conditions. Risks vary by drug but can include infusion reactions and serious infection."
+  ],
+  "CD4 count": [
+    "CD4 Count",
+    "The number of CD4 T-helper lymphocytes in a volume of blood, used to assess immune function in a person with HIV.",
+    "A declining count indicates immune damage. A count below 200 cells/mm³ is one criterion for AIDS and signals high risk for opportunistic infections."
+  ],
+  "viral load": [
+    "HIV Viral Load",
+    "The amount of HIV RNA measured in the blood.",
+    "It is used to monitor response to antiretroviral therapy. Effective treatment aims to suppress the viral load to an undetectable level."
+  ],
+  "antiretroviral therapy": [
+    "Antiretroviral Therapy (ART)",
+    "Combination medication treatment that suppresses HIV replication and protects immune function.",
+    "Adherence is essential even when the person feels well. ART reduces viral load, improves CD4 status, and lowers transmission risk when viral suppression is maintained."
+  ],
+  "opportunistic infection": [
+    "Opportunistic Infection",
+    "An infection that occurs more easily or severely when the immune system is weakened.",
+    "People with advanced HIV or medication-related immunosuppression are at increased risk. Prevention and early recognition are important."
+  ],
+  "meningitis": [
+    "Meningitis",
+    "Inflammation of the membranes surrounding the brain and spinal cord, often caused by infection.",
+    "Fever, severe headache, neck stiffness, photophobia, and altered mental status are concerning. Suspected bacterial meningitis requires urgent treatment and appropriate precautions."
+  ],
+  "sinusitis": [
+    "Sinusitis",
+    "Inflammation of the lining of the paranasal sinuses, often following a viral upper-respiratory infection.",
+    "Symptoms can include nasal congestion, facial pressure/pain, thick nasal drainage, and reduced smell."
+  ],
+  "antimicrobial stewardship": [
+    "Antimicrobial Stewardship",
+    "Using antibiotics and other antimicrobials only when appropriate, with the right drug, dose, route, and duration.",
+    "It reduces adverse effects, resistance, and unnecessary treatment. Obtain ordered cultures before antibiotics when this does not delay urgent care."
+  ],
+  "steroid taper": [
+    "Steroid Taper",
+    "A gradual reduction in corticosteroid dose rather than stopping suddenly.",
+    "Long-term steroids suppress the body's own cortisol production. Abrupt discontinuation can trigger adrenal insufficiency or crisis."
+  ],
+  "somatropin": [
+    "Somatropin",
+    "A recombinant form of human growth hormone used for selected growth hormone deficiencies and other approved indications.",
+    "Administer as prescribed and monitor growth, glucose, edema, joint pain, and signs of intracranial hypertension."
+  ],
+  "gabapentin": [
+    "Gabapentin",
+    "A medication used for neuropathic pain and certain seizure disorders.",
+    "It may cause dizziness, sleepiness, and impaired coordination. Use caution with other sedatives and assess fall risk."
+  ],
+  "pregabalin": [
+    "Pregabalin",
+    "A medication used for neuropathic pain and certain seizure disorders.",
+    "It may cause dizziness, drowsiness, edema, and weight gain. Use caution with sedatives and assess fall risk."
+  ],
+  "calcium gluconate": [
+    "Calcium Gluconate",
+    "An IV calcium salt used to treat severe symptomatic hypocalcemia and to stabilize the cardiac membrane in severe hyperkalemia.",
+    "Administer at the prescribed rate with cardiac monitoring when indicated; assess IV site because extravasation can injure tissue."
+  ],
+  "Chvostek sign": [
+    "Chvostek Sign",
+    "Facial muscle twitching after tapping the facial nerve, which can occur with hypocalcemia.",
+    "It may support concern for neuromuscular irritability but is not diagnostic by itself."
+  ],
+  "Trousseau sign": [
+    "Trousseau Sign",
+    "Carpal spasm triggered by inflating a blood-pressure cuff, associated with neuromuscular irritability from hypocalcemia.",
+    "A positive sign can occur with low calcium and should prompt assessment of calcium and symptoms."
+  ],
+  "tetany": [
+    "Tetany",
+    "Involuntary muscle contractions or spasms caused by increased nerve and muscle excitability, often from low calcium.",
+    "Watch for cramps, tingling, carpopedal spasm, seizures, or laryngospasm in severe hypocalcemia."
+  ],
+  "paresthesia": [
+    "Paresthesia",
+    "An abnormal sensation such as tingling, prickling, or numbness.",
+    "Perioral or hand tingling can be an early sign of hypocalcemia."
+  ],
+  "agranulocytosis": [
+    "Agranulocytosis",
+    "A dangerously low number of neutrophils, greatly increasing the risk of severe infection.",
+    "Fever, sore throat, or mouth ulcers while taking methimazole or PTU require prompt evaluation and a CBC."
+  ],
+  "thionamide": [
+    "Thionamide",
+    "A class of antithyroid medications, including methimazole and propylthiouracil, that inhibit thyroid hormone synthesis.",
+    "Teach clients to report fever or sore throat because agranulocytosis is a rare but serious adverse effect."
+  ],
+  "thyroidectomy": [
+    "Thyroidectomy",
+    "Surgical removal of all or part of the thyroid gland.",
+    "After surgery, monitor airway, bleeding, voice, and calcium. Keep emergency airway equipment and calcium treatment available as ordered."
+  ],
+  "parathyroidectomy": [
+    "Parathyroidectomy",
+    "Surgical removal of one or more parathyroid glands, often to treat hyperparathyroidism.",
+    "Monitor calcium closely after surgery because hypocalcemia can cause tingling, tetany, seizures, or laryngospasm."
+  ],
+  "hypertonic saline": [
+    "Hypertonic Saline",
+    "A concentrated sodium chloride IV solution, such as 3% saline, used for selected severe symptomatic hyponatremia cases.",
+    "Administer with close monitoring of sodium and neurologic status. Avoid correcting sodium too rapidly because osmotic demyelination can occur."
+  ],
+  "osmotic demyelination": [
+    "Osmotic Demyelination Syndrome",
+    "A serious neurologic injury that can occur when chronic hyponatremia is corrected too rapidly, damaging myelin in the brain.",
+    "Prevent it by following controlled sodium-correction limits and frequent laboratory monitoring."
+  ],
+  "exophthalmos": [
+    "Exophthalmos",
+    "Forward protrusion of one or both eyeballs, commonly associated with Graves disease.",
+    "Protect the eyes from dryness and injury; assess vision changes and ability to close the eyelids."
+  ],
+  "thyrotoxicosis": [
+    "Thyrotoxicosis",
+    "A clinical state caused by excessive thyroid hormone action in the body, regardless of the source.",
+    "Severe thyrotoxicosis can progress to thyroid storm, with fever, marked tachycardia, and altered mental status."
+  ],
+  "hypokalemia": [
+    "Hypokalemia",
+    "A lower-than-normal potassium level in the blood.",
+    "Can cause muscle weakness, cramps, constipation, and dangerous dysrhythmias. Monitor ECG and replace potassium as prescribed."
+  ],
+  "hyperkalemia": [
+    "Hyperkalemia",
+    "A higher-than-normal potassium level in the blood.",
+    "Can cause life-threatening cardiac conduction changes and dysrhythmias. Assess ECG and treat urgently when severe."
+  ],
+  "polyuria": [
+    "Polyuria",
+    "Production of an abnormally large volume of urine.",
+    "It is common in diabetes mellitus with hyperglycemia and in diabetes insipidus due to impaired water conservation."
+  ],
+  "polydipsia": [
+    "Polydipsia",
+    "Excessive thirst or increased fluid intake.",
+    "It often accompanies polyuria in diabetes mellitus and diabetes insipidus."
+  ],
+  "osmolality": [
+    "Osmolality",
+    "The concentration of dissolved particles per kilogram of water, commonly measured in serum or urine.",
+    "Serum osmolality is often high in DI and low in SIADH. Interpret alongside sodium, urine osmolality, and volume status."
+  ]
+}
