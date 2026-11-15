@@ -162,7 +162,7 @@ const interactiveGlossaryPatch = String.raw`
   function glossaryKeys(){
     return Object.keys(window.GLOSSARY||{}).filter(k=>typeof k==='string'&&k.trim().length>1).sort((a,b)=>b.length-a.length);
   }
-  function escapeRegExp(s){return String(s).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+  function escapeRegExp(s){const special='.^$*+?()[]{}|\\\\';return String(s).split('').map(ch=>special.includes(ch)?'\\\\'+ch:ch).join('');}
   function enhance(root){
     if(!root)return;
     const keys=glossaryKeys();
