@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/index.html.gz" },
+    { "source": "/index.html", "destination": "/index.html.gz" }
+  ],
+  "headers": [
+    {
+      "source": "/index.html.gz",
+      "headers": [
+        { "key": "Content-Type", "value": "text/html; charset=utf-8" },
+        { "key": "Content-Encoding", "value": "gzip" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
+  ]
+}
