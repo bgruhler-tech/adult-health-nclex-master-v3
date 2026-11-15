@@ -316,7 +316,7 @@ const questionGlossaryPatch = String.raw`<script id="questionGlossaryFinalPatch"
 if (!html.includes('id="questionGlossaryFinalPatch"')) {
   html = html.replace('</body>', questionGlossaryPatch + '\\n</body>');
 }
-const finalCompactCss = \`
+const finalCompactCss = `
 /* Keep module cards in a compact two-column layout; category controls stay aligned. */
 #moduleSections .moduleGrid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
 #moduleSections .sectionHead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:nowrap}
@@ -333,7 +333,7 @@ const finalCompactCss = \`
  #moduleSections .sectionHead .sectionTitle{font-size:1.05rem}
  #moduleSections .sectionToggle{font-size:.64rem}
 }
-\`;
+`;
 if (!html.includes('Keep module cards in a compact two-column layout')) {
  html = html.replace('</head>', '<style>\\n'+finalCompactCss+'\\n</style>\\n</head>');
 }
