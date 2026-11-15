@@ -302,7 +302,7 @@
   "Sjögren syndrome": [
     "Sjögren Syndrome",
     "An autoimmune disease that commonly damages moisture-producing glands, causing dry eyes and dry mouth.",
-    "Assess for dental problems, difficulty swallowing dry foods, eye irritation, and systemic manifestations."
+    "Assess for eye irritation, dental problems, difficulty swallowing dry foods, and systemic manifestations. Teach oral care, hydration, and prescribed eye/mouth treatments."
   ],
   "angioedema": [
     "Angioedema",
@@ -480,6 +480,236 @@
     "It often accompanies polyuria in diabetes mellitus and diabetes insipidus."
   ],
   "osmolality": [
+    "Osmolality",
+    "The concentration of dissolved particles per kilogram of water, commonly measured in serum or urine.",
+    "Serum osmolality is often high in DI and low in SIADH. Interpret alongside sodium, urine osmolality, and volume status."
+  ],
+  "Sjogren syndrome": [
+    "Sjögren Syndrome",
+    "An autoimmune disease that commonly damages moisture-producing glands, causing dry eyes and dry mouth.",
+    "This spelling without the accent refers to the same disorder. Assess for dry eyes, dry mouth, dental problems, and systemic manifestations."
+  ],
+  "HIV/AIDS": [
+    "Human Immunodeficiency Virus (HIV) / Acquired Immunodeficiency Syndrome (AIDS)",
+    "HIV infects and destroys CD4 T-helper cells, weakening immune defenses; AIDS is the advanced stage defined by severe immune suppression or specific opportunistic illnesses.",
+    "CD4 count reflects immune damage and opportunistic-infection risk; HIV viral load measures circulating virus and response to antiretroviral therapy."
+  ],
+  "Immunosuppression": [
+    "Immunosuppression",
+    "Reduced activity or effectiveness of the immune system, caused by disease or medications.",
+    "It increases the risk of infection and may blunt typical signs such as fever. Teach hand hygiene, exposure precautions, and prompt reporting of infection symptoms."
+  ],
+  "Immunoglobulins": [
+    "Immunoglobulins (Antibodies)",
+    "Proteins made by B cells and plasma cells that recognize and bind specific antigens.",
+    "Immunoglobulin levels and types help evaluate immune function. IVIG is pooled antibody therapy used for selected immune and neurologic conditions."
+  ],
+  "Hypothyroidism": [
+    "Hypothyroidism",
+    "A condition in which the thyroid gland produces too little thyroid hormone, slowing metabolic activity.",
+    "Findings may include fatigue, cold intolerance, weight gain, constipation, dry skin, and bradycardia. TSH is usually elevated in primary disease."
+  ],
+  "Hyperthyroidism": [
+    "Hyperthyroidism",
+    "A condition in which the thyroid gland produces too much thyroid hormone, increasing metabolic activity.",
+    "Common findings include heat intolerance, weight loss, tachycardia, tremor, anxiety, and frequent stools. TSH is usually low in primary hyperthyroidism."
+  ],
+  "Diabetes mellitus": [
+    "Diabetes Mellitus",
+    "A group of disorders characterized by chronic hyperglycemia because the body does not make enough insulin or cannot use insulin effectively.",
+    "Monitor blood glucose and A1C, assess for acute complications, and teach medication use, nutrition, activity, and foot care."
+  ],
+  "Corticosteroids": [
+    "Corticosteroids (Glucocorticoids)",
+    "Steroid medications that reduce inflammation and suppress immune activity; examples include prednisone and hydrocortisone.",
+    "Long-term use can cause hyperglycemia, infection risk, osteoporosis, skin thinning, and adrenal suppression. Do not stop prolonged therapy abruptly; taper as prescribed."
+  ],
+  "Growth hormone": [
+    "Growth Hormone (GH)",
+    "A hormone produced by the anterior pituitary that supports linear growth in children and affects metabolism in adults.",
+    "Excess before growth plates close causes gigantism; excess after closure causes acromegaly. Somatropin is a synthetic replacement product."
+  ],
+  "Growth hormone deficiency": [
+    "Growth Hormone Deficiency",
+    "Inadequate secretion or action of growth hormone, which can impair normal growth in children and affect body composition in adults.",
+    "Somatropin may be prescribed for selected indications. Monitor growth response, glucose, and adverse effects as ordered."
+  ],
+  "Mineralocorticoids": [
+    "Mineralocorticoids",
+    "Hormones or medications that regulate sodium, potassium, and fluid balance; aldosterone is the main natural example.",
+    "Fludrocortisone provides mineralocorticoid replacement in some clients with primary adrenal insufficiency."
+  ],
+  "Thyroid replacement": [
+    "Thyroid Hormone Replacement",
+    "Medication used to replace thyroid hormone when the thyroid does not produce enough, most commonly levothyroxine.",
+    "Take consistently on an empty stomach and separate from calcium or iron. Monitor TSH and report symptoms of excessive dosing."
+  ],
+  "Thyroid synthesis inhibitors": [
+    "Thyroid Synthesis Inhibitors",
+    "Antithyroid medications, including methimazole and propylthiouracil, that reduce production of thyroid hormones.",
+    "Teach clients to report fever or sore throat because agranulocytosis is a rare but serious risk; PTU also carries a risk of severe liver injury."
+  ],
+  "Iodine therapy": [
+    "Iodine Therapy",
+    "Use of iodine-containing medication or radioactive iodine to affect thyroid hormone production or thyroid tissue.",
+    "The indication and safety precautions depend on the product. Radioactive iodine requires radiation-safety teaching and is contraindicated in pregnancy and breastfeeding."
+  ],
+  "Radioactive iodine": [
+    "Radioactive Iodine (I-131)",
+    "A radioactive treatment taken orally that is absorbed by thyroid tissue and gradually destroys overactive thyroid cells.",
+    "Teach radiation-safety precautions for the period specified by the treatment team. It is contraindicated in pregnancy and breastfeeding."
+  ],
+  "Alendronate": [
+    "Alendronate",
+    "A bisphosphonate medication that slows bone breakdown and is used to treat or prevent osteoporosis.",
+    "Take first thing in the morning with plain water; remain upright for at least 30 minutes and wait before food or other medications to reduce esophageal injury."
+  ],
+  "Insulin": [
+    "Insulin",
+    "A hormone and medication that moves glucose from the bloodstream into cells and lowers blood glucose.",
+    "Monitor glucose and potassium. Insulin shifts potassium into cells and can cause hypoglycemia; verify the correct insulin type, dose, timing, and route."
+  ],
+  "Glucagon": [
+    "Glucagon",
+    "A hormone and medication that raises blood glucose by stimulating the liver to release stored glucose.",
+    "It may be used for severe hypoglycemia when the client cannot safely swallow. Turn the client on the side if unconscious because vomiting can occur; recheck glucose and provide follow-up carbohydrate when awake."
+  ],
+  "Vasopressin": [
+    "Vasopressin (Antidiuretic Hormone, ADH)",
+    "A hormone that promotes water reabsorption by the kidneys and can constrict blood vessels.",
+    "It helps regulate serum osmolality and blood pressure. Excess ADH activity contributes to SIADH."
+  ],
+  "Tolvaptan": [
+    "Tolvaptan",
+    "An oral vasopressin V2-receptor antagonist used in selected patients with clinically significant euvolemic or hypervolemic hyponatremia.",
+    "Initiation and re-initiation generally require hospital monitoring of sodium. Avoid overly rapid sodium correction; liver injury is also a concern with longer use."
+  ],
+  "Conivaptan": [
+    "Conivaptan",
+    "An IV vasopressin V1A/V2-receptor antagonist used in hospital for selected cases of euvolemic or hypervolemic hyponatremia.",
+    "Monitor serum sodium and fluid balance closely to prevent overly rapid correction. It is administered IV and can cause infusion-site reactions and hypotension."
+  ],
+  "Vaptan": [
+    "Vaptan (Vasopressin Antagonist)",
+    "A medication that blocks ADH receptors so the kidneys excrete more free water, sometimes raising serum sodium in selected cases of hyponatremia.",
+    "Monitor sodium correction closely. Tolvaptan has important initiation, monitoring, and liver-safety restrictions."
+  ],
+  "vasopressin/desmopressin": [
+    "Vasopressin and Desmopressin",
+    "Related medications that act at antidiuretic hormone receptors; desmopressin is a longer-acting synthetic ADH analog.",
+    "Desmopressin is commonly used for central DI. Monitor urine output, weight, sodium, and signs of water retention or hyponatremia."
+  ],
+  "Hydrocortisone": [
+    "Hydrocortisone",
+    "A glucocorticoid medication that replaces cortisol and reduces inflammation.",
+    "It is used in adrenal insufficiency and adrenal crisis. During crisis, IV hydrocortisone and isotonic fluids are urgent treatments."
+  ],
+  "Fludrocortisone": [
+    "Fludrocortisone",
+    "A synthetic mineralocorticoid that helps the kidneys retain sodium and water and excrete potassium.",
+    "It may be prescribed for primary adrenal insufficiency. Monitor blood pressure, edema, sodium, and potassium."
+  ],
+  "Prednisone": [
+    "Prednisone",
+    "An oral glucocorticoid medication used to reduce inflammation and suppress immune activity.",
+    "Long-term use can cause hyperglycemia, infection risk, osteoporosis, and adrenal suppression. Take as prescribed and do not stop suddenly after prolonged use."
+  ],
+  "Prednisolone": [
+    "Prednisolone",
+    "A glucocorticoid medication used to reduce inflammation and suppress immune activity.",
+    "Long-term use can cause infection risk, hyperglycemia, osteoporosis, and adrenal suppression. Follow taper instructions when prescribed."
+  ],
+  "Tacrolimus": [
+    "Tacrolimus",
+    "A calcineurin-inhibitor immunosuppressant that reduces T-cell activation.",
+    "Monitor drug levels when ordered, kidney function, blood pressure, electrolytes, and infection risk. It can be nephrotoxic."
+  ],
+  "Cyclosporine": [
+    "Cyclosporine",
+    "A calcineurin-inhibitor immunosuppressant that reduces T-cell activation.",
+    "Monitor drug levels when ordered, kidney function, blood pressure, electrolytes, and infection risk. It can be nephrotoxic."
+  ],
+  "IVIG": [
+    "Intravenous Immunoglobulin (IVIG)",
+    "A preparation of pooled antibodies from donated plasma, administered through an IV.",
+    "It modulates immune activity and may be used for Guillain-Barré syndrome and other disorders. Monitor for infusion reactions and product-specific risks."
+  ],
+  "plasmapheresis": [
+    "Plasmapheresis (Plasma Exchange)",
+    "A procedure that removes plasma containing harmful antibodies and replaces it with a replacement fluid.",
+    "It may be used in severe autoimmune neurologic conditions such as Guillain-Barré syndrome or myasthenic crisis. Monitor hemodynamics, calcium, and vascular access."
+  ],
+  "Osteoarthritis": [
+    "Osteoarthritis (OA)",
+    "A degenerative joint disorder involving breakdown of articular cartilage and changes in underlying bone.",
+    "Pain often worsens with activity and improves with rest; morning stiffness is usually brief. It differs from autoimmune inflammatory arthritis such as RA."
+  ],
+  "Pancreatitis": [
+    "Pancreatitis",
+    "Inflammation of the pancreas, commonly associated with gallstones or alcohol use.",
+    "Severe upper-abdominal pain radiating to the back, nausea, and vomiting are common. Monitor hydration, pain, glucose, and signs of complications."
+  ],
+  "Influenza": [
+    "Influenza (Flu)",
+    "A contagious viral respiratory infection that can cause fever, cough, sore throat, muscle aches, headache, and fatigue.",
+    "Vaccination is a key prevention measure. Use appropriate respiratory precautions and monitor high-risk clients for complications such as pneumonia."
+  ],
+  "Meningitis": [
+    "Meningitis",
+    "Inflammation of the membranes surrounding the brain and spinal cord, often caused by infection.",
+    "Fever, severe headache, neck stiffness, photophobia, and altered mental status are concerning. Suspected bacterial meningitis requires urgent treatment and appropriate precautions."
+  ],
+  "Resistant organisms": [
+    "Antimicrobial-Resistant Organisms",
+    "Bacteria or other microbes that are not effectively killed by one or more usual antimicrobial medications.",
+    "Use organism-specific infection-control precautions, hand hygiene, appropriate cultures, and antibiotics guided by susceptibility results."
+  ],
+  "Myasthenic vs cholinergic crisis": [
+    "Myasthenic Crisis vs. Cholinergic Crisis",
+    "Both can cause severe weakness and respiratory compromise. Myasthenic crisis is worsening neuromuscular-junction failure; cholinergic crisis is excess acetylcholine from medication effect.",
+    "Both require urgent airway and respiratory assessment. Cholinergic crisis may also cause excess secretions, salivation, diarrhea, abdominal cramps, and bradycardia."
+  ],
+  "CD4 T cells": [
+    "CD4 T Cells",
+    "Helper lymphocytes that coordinate immune responses by signaling other immune cells.",
+    "HIV targets CD4 cells; a falling CD4 count reflects progressive immune-system damage."
+  ],
+  "AIDS": [
+    "Acquired Immunodeficiency Syndrome (AIDS)",
+    "The advanced stage of HIV infection, defined by severe immune suppression or certain opportunistic illnesses.",
+    "A CD4 count below 200 cells/mm³ is one criterion. Assess for opportunistic infections and support adherence to antiretroviral therapy."
+  ],
+  "HIV": [
+    "Human Immunodeficiency Virus (HIV)",
+    "A virus that infects CD4 T-helper cells and progressively weakens immune defenses if untreated.",
+    "Antiretroviral therapy suppresses viral replication, improves immune function, and reduces transmission risk when viral suppression is maintained."
+  ],
+  "Viral load": [
+    "HIV Viral Load",
+    "The amount of HIV RNA measured in the blood.",
+    "It is used to monitor response to antiretroviral therapy. Effective treatment aims to suppress the viral load to an undetectable level."
+  ],
+  "Anion gap": [
+    "Anion Gap",
+    "A calculated value that estimates unmeasured ions in the blood and helps identify certain metabolic acidoses.",
+    "The anion gap is often elevated in DKA because ketoacids accumulate; it generally closes as ketoacidosis resolves."
+  ],
+  "Metabolic acidosis": [
+    "Metabolic Acidosis",
+    "An acid-base disorder in which the blood becomes more acidic because bicarbonate is reduced or acid accumulates.",
+    "DKA causes high-anion-gap metabolic acidosis. Assess pH, bicarbonate, respiratory compensation, and the underlying cause."
+  ],
+  "Polyuria": [
+    "Polyuria",
+    "Production of an abnormally large volume of urine.",
+    "It is common in diabetes mellitus with hyperglycemia and in diabetes insipidus due to impaired water conservation."
+  ],
+  "Polydipsia": [
+    "Polydipsia",
+    "Excessive thirst or increased fluid intake.",
+    "It often accompanies polyuria in diabetes mellitus and diabetes insipidus."
+  ],
+  "Osmolality": [
     "Osmolality",
     "The concentration of dissolved particles per kilogram of water, commonly measured in serum or urine.",
     "Serum osmolality is often high in DI and low in SIADH. Interpret alongside sodium, urine osmolality, and volume status."
