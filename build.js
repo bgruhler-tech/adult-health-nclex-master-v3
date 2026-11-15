@@ -108,6 +108,16 @@ replaceOnce(
 );
 
 html = html.replace('Last updated: October 28, 2026 — Chapter 4 added', 'Last updated: November 15, 2026 — Compact lesson layout');
+const lupusGlossaryPatch = `
+/* Explicit systemic lupus erythematosus glossary coverage + searchable aliases */
+Object.assign(window.GLOSSARY, {
+  "systemic lupus erythematosus":["Systemic Lupus Erythematosus (SLE)","A chronic systemic autoimmune disease in which autoantibodies and immune-complex inflammation can affect multiple organs, especially the skin, joints, kidneys, blood cells, heart, lungs, and nervous system.","Common findings include fatigue, joint pain, photosensitive malar or other rashes, oral ulcers, and possible nephritis. ANA is sensitive but not specific; anti-dsDNA and anti-Smith antibodies are more specific, and complement levels/urinalysis help assess activity and kidney involvement. Treatment is individualized and may include hydroxychloroquine, corticosteroids, or immunosuppressants. Teach sun protection, medication adherence, infection precautions when immunosuppressed, and prompt reporting of chest pain, shortness of breath, edema, foamy/bloody urine, fever, or new neurologic symptoms."],
+  "lupus":["Lupus (Systemic Lupus Erythematosus, SLE)","A chronic autoimmune disease that can cause inflammation and damage in multiple organs; systemic lupus erythematosus is the most common systemic form.","Look for fatigue, photosensitivity, joint pain, characteristic rashes, oral ulcers, cytopenias, and kidney involvement. ANA is commonly positive but is not diagnostic by itself. Monitor renal function and urine protein/blood, support sun protection, and reinforce prescribed therapy and infection precautions."],
+  "lupas":["Lupus (commonly misspelled “lupas”)","A common misspelling of lupus, an autoimmune disease; the full medical term is systemic lupus erythematosus (SLE).","Use the correct spelling lupus. SLE can affect the skin, joints, kidneys, blood cells, heart, lungs, and nervous system."],
+  "erythematosus":["Erythematosus","A medical adjective meaning characterized by erythema (redness); it appears in the name systemic lupus erythematosus.","In SLE, the term is part of the disease name and is associated with inflammatory skin findings such as a malar rash. It does not mean that every person with SLE has a rash."]
+});
+`;
+replaceOnce('const GLOSSARY_PRON=window.GLOSSARY_PRON||{};', lupusGlossaryPatch+'\\nconst GLOSSARY_PRON=window.GLOSSARY_PRON||{};', 'lupus glossary terms');
 const compactLessonCss = `
 /* Compact lesson browser: two cards per row, less vertical padding */
 .moduleGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
