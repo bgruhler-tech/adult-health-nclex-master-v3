@@ -252,9 +252,11 @@ const globalGlossaryPatch = String.raw`
   else start();
 })();
 </script>`;
-const globalGlossaryAnchor = /<script id="glossaryDynamicPatch">[\\s\\S]*?<\\/script>/;
-if (!globalGlossaryAnchor.test(html)) throw new Error('Global glossary renderer anchor missing; refusing unsafe build.');
-html = html.replace(globalGlossaryAnchor, globalGlossaryPatch);
+const globalGlossaryStart = html.indexOf('<script id="glossaryDynamicPatch">');
+const globalGlossaryEnd = globalGlossaryStart < 0 ? -1 : html.indexOf('</script>', globalGlossaryStart);
+if (globalGlossaryStart < 0 || globalGlossaryEnd < 0) throw new Error('Global glossary renderer anchor missing; refusing unsafe build.');
+html = html.slice(0, globalGlossaryStart) + globalGlossaryPatch + html.slice(globalGlossaryEnd + '</script>'.length);
+
 if (!html.includes('Sinusitis') || !html.includes('ch5-high-yield-immunity-metabolism')) {
   throw new Error('Preservation check failed. Refusing to publish.');
 }
