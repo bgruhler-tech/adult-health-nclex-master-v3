@@ -21,9 +21,9 @@ if (!excluded.length) throw new Error('Medication source audit: exclusion list i
 
 let removedQuestions = 0;
 const removedByModule = {};
-for (const path of fs.readdirSync('.').filter(name => /^bank-data-\\d+\\.js$/.test(name))) {
+for (const path of fs.readdirSync('.').filter(name => /^bank-data-\d+\.js$/.test(name))) {
   const source = fs.readFileSync(path, 'utf8');
-  const match = source.match(/Object\\.assign\\(window\\.__BANK_DATA__\\|\\|\\{\\},([\\s\\S]*?)\\);?\\s*$/);
+  const match = source.match(/Object\.assign\(window\.__BANK_DATA__\|\|\{\},([\s\S]*?)\);?\s*$/);
   if (!match) throw new Error('Medication source audit: could not parse ' + path);
   const banks = JSON.parse(match[1]);
   for (const [moduleId, questions] of Object.entries(banks)) {
@@ -32,7 +32,7 @@ for (const path of fs.readdirSync('.').filter(name => /^bank-data-\\d+\\.js$/.te
     if (removed) { removedQuestions += removed; removedByModule[moduleId] = (removedByModule[moduleId] || 0) + removed; }
     banks[moduleId] = filtered;
   }
-  fs.writeFileSync(path, 'window.__BANK_DATA__=Object.assign(window.__BANK_DATA__||{},' + JSON.stringify(banks) + ');\\n');
+  fs.writeFileSync(path, 'window.__BANK_DATA__=Object.assign(window.__BANK_DATA__||{},' + JSON.stringify(banks) + ');\n');
 }
 
 if (data.banks && typeof data.banks === 'object') {
