@@ -155,17 +155,85 @@ const compactLessonCss = `
 replaceOnce('</head>', '<style>\n'+compactLessonCss+'\n</style>\n</head>', 'compact lesson layout insertion');
 
 
-const globalGlossaryPatch = String.raw`
-<script id="glossaryDynamicPatch">
+const interactiveGlossaryPatch = String.raw`
+<script id="interactiveGlossaryPatch">
 (function(){
-  const excluded='script,style,noscript,textarea,input,select,option,button,.glossaryWord,#glossaryModal,header,nav,[contenteditable="true"],.chapterSwitcher,.modal,.toast';
-  function keys(){
-    return Object.keys(window.GLOSSARY||{}).filter(k=>String(k).trim().length>1).sort((a,b)=>b.length-a.length);
+  const skip='script,style,noscript,textarea,input,select,option,button,a,.glossaryWord,[contenteditable="true"],#glossaryModal,header,nav';
+  function glossaryKeys(){
+    return Object.keys(window.GLOSSARY||{}).filter(k=>typeof k==='string'&&k.trim().length>1).sort((a,b)=>b.length-a.length);
   }
-  function makeRegex(){
-    const all=keys();
-    if(!all.length)return null;
-    const escaped=all.map(s=>String(s).replace(/[\\^$.*+?()[\]{}|/-]/g,'\\if (!html.includes('Sinusitis') || !html.includes('ch5-high-yield-immunity-metabolism')) {'));
+  function escapeRegExp(s){return String(s).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+  function enhance(root){
+    if(!root)return;
+    const keys=glossaryKeys();
+    if(!keys.length)return;
+    let re;
+    try{re=new RegExp('(?<![A-Za-z0-9])('+keys.map(escapeRegExp).join('|')+')(?![A-Za-z0-9])','gi');}
+    catch(e){console.error('Glossary matcher error',e);return;}
+    const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{
+      acceptNode(n){
+        if(!n.nodeValue||!n.nodeValue.trim())return NodeFilter.FILTER_REJECT;
+        if(n.parentElement?.closest(skip))return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+    for(const n of nodes){
+      const value=n.nodeValue;re.lastIndex=0;if(!re.test(value))continue;re.lastIndex=0;
+      const frag=document.createDocumentFragment();let pos=0,m;
+      while((m=re.exec(value))){
+        if(m.index>pos)frag.appendChild(document.createTextNode(value.slice(pos,m.index)));
+        const term=m[0],b=document.createElement('button');
+        b.type='button';b.className='glossaryWord';b.dataset.term=term;b.textContent=term;
+        b.title='Click to view glossary definition';b.setAttribute('aria-label','Define '+term);
+        frag.appendChild(b);pos=m.index+term.length;
+      }
+      if(pos<value.length)frag.appendChild(document.createTextNode(value.slice(pos)));
+      n.parentNode?.replaceChild(frag,n);
+    }
+  }
+  function openDefinition(term){
+    const g=window.GLOSSARY||{},key=Object.keys(g).find(k=>k.toLowerCase()===String(term||'').toLowerCase());
+    if(!key)return;
+    const value=g[key],modal=document.getElementById('glossaryModal');
+    if(!modal)return;
+    const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v||'';};
+    set('glossaryTitle',key);set('glossaryFull',value[0]||key);set('glossaryDef',value[1]);set('glossaryWhy',value[2]);
+    modal.classList.remove('hidden');modal.style.display='flex';document.body.style.overflow='hidden';
+  }
+  document.addEventListener('click',e=>{
+    const b=e.target?.closest?.('.glossaryWord');if(!b)return;
+    e.preventDefault();e.stopPropagation();openDefinition(b.dataset.term||b.textContent);
+  },true);
+  function scan(){enhance(document.getElementById('quizPanel'));enhance(document.getElementById('reviewPanel'));}
+  let queued=false;
+  function schedule(){if(queued)return;queued=true;queueMicrotask(()=>{queued=false;scan();});}
+  function start(){
+    scan();
+    ['quizPanel','reviewPanel'].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el)new MutationObserver(schedule).observe(el,{childList:true,subtree:true});
+    });
+    if(!window.__glossaryBodyObserver){
+      window.__glossaryBodyObserver=new MutationObserver(schedule);
+      window.__glossaryBodyObserver.observe(document.body,{childList:true,subtree:true});
+    }
+  }
+  window.refreshStudyGlossary=scan;
+  window.enhanceGlossary=enhance;
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
+</script>`;
+const oldPatchStart = html.indexOf('<script id="glossaryDynamicPatch">');
+const oldPatchEnd = oldPatchStart < 0 ? -1 : html.indexOf('</script>', oldPatchStart);
+if (oldPatchStart >= 0 && oldPatchEnd >= 0) html = html.slice(0, oldPatchStart) + html.slice(oldPatchEnd + 9);
+const oldQuestionStart = html.indexOf('<script id="questionGlossaryFinalPatch">');
+const oldQuestionEnd = oldQuestionStart < 0 ? -1 : html.indexOf('</script>', oldQuestionStart);
+if (oldQuestionStart >= 0 && oldQuestionEnd >= 0) html = html.slice(0, oldQuestionStart) + html.slice(oldQuestionEnd + 9);
+html = html.replace('</body>', interactiveGlossaryPatch + '\\n</body>');
+const glossaryStyle = '.glossaryWord{display:inline!important;color:inherit!important;background:rgba(216,164,58,.22)!important;text-decoration:underline!important;text-decoration-style:dotted!important;text-decoration-color:#b9851d!important;text-underline-offset:3px!important;border:0!important;padding:0 1px!important;font:inherit!important;cursor:pointer!important;border-radius:2px!important}.glossaryWord:hover,.glossaryWord:focus{background:rgba(216,164,58,.42)!important;outline:1px solid rgba(185,133,29,.45)!important}';
+html = html.replace('</head>', '<style>'+glossaryStyle+'</style>\\n</head>');
+if (!html.includes('Sinusitis') || !html.includes('ch5-high-yield-immunity-metabolism')) {'));
     try{return new RegExp('(?<![A-Za-z0-9])('+escaped.join('|')+')(?![A-Za-z0-9])','gi');}
     catch(e){console.error('Glossary matcher could not be built',e);return null;}
   }
@@ -317,23 +385,29 @@ if (!html.includes('id="questionGlossaryFinalPatch"')) {
   html = html.replace('</body>', questionGlossaryPatch + '\\n</body>');
 }
 const finalCompactCss = `
-/* Keep module cards in a compact two-column layout; category controls stay aligned. */
-#moduleSections .moduleGrid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
-#moduleSections .sectionHead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:nowrap}
-#moduleSections .sectionHead .sectionTitle{font-size:1.25rem;margin:14px 0 8px;min-width:0}
-#moduleSections .sectionToggle{font-size:.72rem;white-space:nowrap;gap:5px;margin-left:auto}
-#moduleSections .moduleCard{min-width:0;padding:12px}
-#moduleSections .moduleCard .randomCheck{margin:4px 0 6px;font-size:.72rem}
-@media(max-width:560px){
- #moduleSections .moduleGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:7px!important}
- #moduleSections .moduleCard{padding:9px}
- #moduleSections .moduleCard h3{font-size:.92rem}
- #moduleSections .moduleCard p{font-size:.72rem}
- #moduleSections .sectionHead{gap:6px}
- #moduleSections .sectionHead .sectionTitle{font-size:1.05rem}
- #moduleSections .sectionToggle{font-size:.64rem}
+/* Compact two-column category layout: each module section sits beside the next. */
+#moduleSections{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;align-items:start!important;gap:18px!important}
+#moduleSections>section{min-width:0!important;margin:0 0 8px!important}
+#moduleSections .sectionHead{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+#moduleSections .sectionHead .sectionTitle{font-size:1.18rem!important;line-height:1.2!important;margin:10px 0 8px!important;min-width:0}
+#moduleSections .sectionToggle{font-size:.68rem!important;white-space:nowrap;gap:5px;margin:0 0 7px auto}
+#moduleSections .moduleGrid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:8px!important}
+#moduleSections .moduleCard{min-width:0!important;width:100%!important;padding:12px!important;border-radius:15px!important;min-height:0!important}
+#moduleSections .moduleCard h3{font-size:1.02rem!important;line-height:1.22!important;margin:6px 0!important}
+#moduleSections .moduleCard p{font-size:.78rem!important;line-height:1.35!important;margin:5px 0 8px!important}
+#moduleSections .moduleCard .metrics{gap:5px!important;margin:7px 0!important}
+#moduleSections .moduleCard .metric{padding:6px 3px!important;font-size:.66rem!important}
+#moduleSections .moduleCard .progress{margin:5px 0 8px!important}
+#moduleSections .moduleCard .randomCheck{font-size:.68rem!important;margin:3px 0 6px!important}
+#moduleSections .moduleCard .cardActions{gap:5px!important}
+#moduleSections .moduleCard .cardActions .btn{flex:1 1 0!important;min-width:0!important;padding:7px 6px!important;font-size:.7rem!important}
+@media(max-width:760px){
+ #moduleSections{grid-template-columns:1fr!important;gap:12px!important}
+ #moduleSections .sectionHead .sectionTitle{font-size:1.1rem!important}
+ #moduleSections .moduleCard{padding:10px!important}
 }
 `;
+
 if (!html.includes('Keep module cards in a compact two-column layout')) {
  html = html.replace('</head>', '<style>\\n'+finalCompactCss+'\\n</style>\\n</head>');
 }
