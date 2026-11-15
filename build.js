@@ -142,7 +142,7 @@ const compactLessonCss = `
   .moduleCard .metric{font-size:.62rem}
 }
 `;
-replaceOnce('</head>', '<style>\\n'+compactLessonCss+'\\n</style>\\n</head>', 'compact lesson layout insertion');
+replaceOnce('</head>', '<style>\n'+compactLessonCss+'\n</style>\n</head>', 'compact lesson layout insertion');
 
 if (!html.includes('Sinusitis') || !html.includes('ch5-high-yield-immunity-metabolism')) {
   throw new Error('Preservation check failed. Refusing to publish.');
