@@ -713,5 +713,130 @@
     "Osmolality",
     "The concentration of dissolved particles per kilogram of water, commonly measured in serum or urine.",
     "Serum osmolality is often high in DI and low in SIADH. Interpret alongside sodium, urine osmolality, and volume status."
+  ],
+  "SIADH vs DI": [
+    "SIADH vs. Diabetes Insipidus",
+    "SIADH is excess ADH activity causing water retention, low serum sodium, and concentrated urine; DI is inadequate ADH action causing water loss, high or rising sodium, and dilute urine.",
+    "Compare urine output, urine concentration, serum sodium, and serum osmolality. SIADH usually causes low output/concentrated urine; DI causes high output/dilute urine."
+  ],
+  "Methimazole/PTU": [
+    "Methimazole vs. Propylthiouracil (PTU)",
+    "Both are thionamide antithyroid drugs that reduce thyroid hormone production; PTU also reduces peripheral conversion of T4 to T3.",
+    "Both can cause agranulocytosis, so fever or sore throat needs prompt evaluation. PTU has an additional serious hepatotoxicity risk."
+  ],
+  "HHS": [
+    "Hyperosmolar Hyperglycemic State (HHS)",
+    "A life-threatening diabetic emergency with very high glucose, severe dehydration, and increased serum osmolality, usually without major ketoacidosis.",
+    "Monitor neurologic status, glucose, osmolality, renal function, and electrolytes; fluid replacement is a major priority."
+  ],
+  "DKA vs HHS": [
+    "DKA vs. HHS",
+    "DKA involves insulin deficiency with ketone production and metabolic acidosis; HHS involves profound hyperglycemia, hyperosmolality, and dehydration with little or no significant ketoacidosis.",
+    "Both are emergencies requiring fluids, electrolyte monitoring, and insulin as prescribed. DKA typically has ketones and acidosis; HHS typically has more severe dehydration and neurologic changes."
+  ],
+  "DKA potassium": [
+    "Potassium in Diabetic Ketoacidosis",
+    "Total-body potassium is usually depleted in DKA even when the initial serum potassium is normal or high, because acidosis and insulin deficiency shift potassium out of cells.",
+    "Insulin moves potassium back into cells and can cause a rapid fall in serum potassium. Check potassium before insulin and replace as ordered; severe hypokalemia requires correction before insulin."
+  ],
+  "Vaptan black-box warning": [
+    "Tolvaptan Safety Warning",
+    "Tolvaptan has important safety restrictions, including hospital initiation/re-initiation for hyponatremia because sodium can rise too rapidly; longer use carries a risk of serious liver injury.",
+    "Monitor serum sodium closely and avoid overly rapid correction. Follow product-specific duration and liver-monitoring restrictions; do not treat this as a class-wide warning for every vaptan."
+  ],
+  "PTU hepatotoxicity": [
+    "Propylthiouracil-Associated Hepatotoxicity",
+    "Potentially severe liver injury associated with propylthiouracil (PTU).",
+    "Teach clients to report jaundice, dark urine, pale stools, right-upper-quadrant pain, nausea, or unusual fatigue promptly."
+  ],
+  "Post-thyroidectomy hypocalcemia": [
+    "Post-Thyroidectomy Hypocalcemia",
+    "Low blood calcium that can occur after thyroid surgery if the parathyroid glands are injured or their blood supply is disrupted.",
+    "Assess for perioral tingling, numbness, muscle cramps, tetany, positive Chvostek/Trousseau signs, and laryngospasm. Monitor calcium and keep prescribed calcium treatment available."
+  ],
+  "Central vs. nephrogenic DI": [
+    "Central vs. Nephrogenic Diabetes Insipidus",
+    "Central DI results from inadequate ADH production/release; nephrogenic DI results from kidney resistance to ADH.",
+    "Desmopressin usually improves central DI but is generally ineffective in nephrogenic DI. Monitor urine output, urine concentration, sodium, and fluid status."
+  ],
+  "Hypernatremia": [
+    "Hypernatremia",
+    "A higher-than-normal serum sodium concentration, usually reflecting a relative water deficit.",
+    "Can cause intense thirst, weakness, irritability, confusion, and seizures. DI can cause hypernatremia through excessive free-water loss."
+  ],
+  "Glucocorticoids": [
+    "Glucocorticoids",
+    "Steroid hormones and medications that affect metabolism, stress response, and inflammation; cortisol is the natural example.",
+    "Hydrocortisone and prednisone are glucocorticoids. Long-term therapy can suppress natural cortisol production, so do not stop abruptly after prolonged use."
+  ],
+  "Vasopressin/desmopressin": [
+    "Vasopressin and Desmopressin",
+    "Related medications that act at antidiuretic hormone receptors; desmopressin is a synthetic ADH analog.",
+    "Desmopressin is commonly used for central DI. Monitor urine output, weight, sodium, and signs of water retention or hyponatremia."
+  ],
+  "Addison disease teaching": [
+    "Addison Disease: Patient Teaching",
+    "Teaching for primary adrenal insufficiency focuses on lifelong hormone replacement, medication adherence, and preventing adrenal crisis.",
+    "Do not stop corticosteroids abruptly. Follow the prescribed sick-day/stress-dose plan, wear medical identification, and seek urgent care for persistent vomiting, severe weakness, or hypotension."
+  ],
+  "Growth hormone adverse effects": [
+    "Somatropin (Growth Hormone) Adverse Effects",
+    "Potential adverse effects of growth hormone therapy include edema, joint or muscle pain, glucose intolerance, and increased intracranial pressure in some patients.",
+    "Monitor growth response, glucose, edema, headache, visual changes, and joint pain. Report severe headache or vision changes promptly."
+  ],
+  "Water-deprivation test complications": [
+    "Water-Deprivation Test: Safety",
+    "A supervised diagnostic test that can cause dehydration and changes in blood pressure or serum sodium if not monitored carefully.",
+    "Monitor weight, vital signs, urine output, urine concentration, and serum sodium. Stop according to protocol for excessive weight loss, hypotension, or significant hypernatremia."
+  ],
+  "Nephrogenic DI causes": [
+    "Causes of Nephrogenic Diabetes Insipidus",
+    "Nephrogenic DI occurs when the kidneys do not respond normally to ADH.",
+    "Causes include medications such as lithium, kidney disorders, and inherited conditions. Review medication history and renal function."
+  ],
+  "Acute inflammation": [
+    "Acute Inflammation",
+    "A rapid, short-term immune response to injury or infection, typically involving redness, heat, swelling, pain, and sometimes loss of function.",
+    "It helps contain injury and begin healing. Systemic signs such as fever or worsening vital signs may indicate a broader response."
+  ],
+  "Chronic inflammation": [
+    "Chronic Inflammation",
+    "A prolonged inflammatory response that can persist for months or years and contribute to tissue damage.",
+    "It is involved in autoimmune diseases such as RA and SLE and may cause ongoing pain, swelling, and organ injury."
+  ],
+  "Anaphylaxis first-line medication": [
+    "First-Line Medication for Anaphylaxis",
+    "Intramuscular epinephrine in the mid-outer thigh is the first-line medication for anaphylaxis.",
+    "Give promptly; antihistamines and corticosteroids are adjuncts and must not delay epinephrine. Reassess airway, breathing, circulation, and response."
+  ],
+  "Angioedema airway": [
+    "Airway Risk in Angioedema",
+    "Swelling of the tongue, lips, floor of the mouth, or throat can rapidly obstruct the airway.",
+    "Voice change, drooling, stridor, difficulty swallowing, or respiratory distress requires immediate airway-focused emergency response."
+  ],
+  "DMARD infection precautions": [
+    "DMARD Infection Precautions",
+    "Disease-modifying antirheumatic drugs can suppress immune activity and increase infection risk.",
+    "Teach clients to report fever, sore throat, cough, or other infection signs promptly and follow drug-specific screening and monitoring."
+  ],
+  "Glucocorticoid safety": [
+    "Glucocorticoid Safety",
+    "Systemic glucocorticoids can cause hyperglycemia, infection risk, mood changes, osteoporosis, skin thinning, and adrenal suppression.",
+    "Use the lowest effective dose for the prescribed duration, monitor for adverse effects, and taper prolonged therapy as directed."
+  ],
+  "Thionamide agranulocytosis": [
+    "Thionamide-Associated Agranulocytosis",
+    "A rare but serious drop in neutrophils associated with antithyroid medications such as methimazole and PTU.",
+    "Fever, sore throat, or mouth ulcers require prompt evaluation and a CBC; the medication may need to be held pending provider direction."
+  ],
+  "Pituitary function": [
+    "Pituitary Function",
+    "The pituitary gland releases hormones that regulate growth, thyroid activity, adrenal function, reproduction, and water balance.",
+    "The anterior pituitary releases hormones such as GH, ACTH, and TSH; the posterior pituitary releases ADH and oxytocin."
+  ],
+  "Parathyroid function": [
+    "Parathyroid Function",
+    "The parathyroid glands release parathyroid hormone (PTH), which helps regulate blood calcium and phosphate.",
+    "PTH raises serum calcium. Too little PTH can cause hypocalcemia; too much can cause hypercalcemia."
   ]
 }
