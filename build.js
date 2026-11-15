@@ -297,8 +297,8 @@ peekDirectHTML = function(q){
 };
 `;
 replaceOnce(sourceNoteInit, sourceNoteInit+'\n'+sourceNoteRuntime, 'source-linked study note initialization');
-const oldQuizMeta = '<div class="qmeta"><span class="qbadge">\${esc(q.category||q.tag||"NCLEX")}</span><span class="qtype">';
-const newQuizMeta = '<div class="qmeta"><span class="qbadge">\${esc(q.category||q.tag||"NCLEX")}</span><span class="qIdBadge">Card ID: \${esc(q.id)}</span><span class="qtype">';
+const oldQuizMeta = '<div class="qmeta"><span class="qbadge">${esc(q.category||q.tag||"NCLEX")}</span><span class="qtype">';
+const newQuizMeta = '<div class="qmeta"><span class="qbadge">${esc(q.category||q.tag||"NCLEX")}</span><span class="qIdBadge">Card ID: ${esc(q.id)}</span><span class="qtype">';
 replaceOnce(oldQuizMeta,newQuizMeta,'quiz card ID');
 const sourceCardCss = '.qIdBadge{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:4px 8px;font-size:.72rem;font-weight:850;color:var(--green);background:rgba(15,107,97,.07);white-space:nowrap}.peekDirectStudy{margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}.peekSourceId{font-size:.82rem;color:var(--muted);margin:5px 0}.peekSourceId code{font-weight:850;color:var(--green)}.peekDirectNote{margin-top:9px;padding:10px 12px;border-radius:10px;background:rgba(15,107,97,.06);line-height:1.5}';
 replaceOnce('</head>','<style>'+sourceCardCss+'</style>\\n</head>','source card styles');
