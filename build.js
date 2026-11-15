@@ -208,6 +208,12 @@ const globalGlossaryPatch = String.raw`
       node.parentNode?.replaceChild(fragment,node);
     });
   }
+  Object.assign(window.GLOSSARY, {
+    "systemic":["Systemic","A term describing something that affects or involves the body as a whole rather than one isolated area.","In nursing, systemic findings suggest broader body involvement. Systemic lupus erythematosus is an autoimmune disease that can affect multiple organs."],
+    "systemic lupus erythematosus":["Systemic Lupus Erythematosus (SLE)","A chronic systemic autoimmune disease that can affect multiple organs, including the skin, joints, kidneys, blood cells, heart, lungs, and nervous system.","Assess for fatigue, joint pain, photosensitive rash, oral ulcers, cytopenias, and renal involvement. ANA is sensitive but not specific; anti-dsDNA and anti-Smith antibodies are more specific. Monitor urinalysis and renal function; reinforce sun protection, prescribed treatment, and infection precautions when immunosuppressed."],
+    "lupus":["Lupus (Systemic Lupus Erythematosus, SLE)","An autoimmune disease that causes inflammation and can affect multiple organs.","Assess skin, joint, renal, blood, cardiac, pulmonary, and neurologic manifestations. Reinforce sun protection, medication adherence, and monitoring for organ involvement."],
+    "erythematosus":["Erythematosus","A medical adjective relating to redness or erythema; it is part of the name systemic lupus erythematosus.","In SLE, it is part of the disease name and is associated with inflammatory skin findings such as a malar rash."]
+  });
   window.showGlossary=function(term){
     const raw=String(term||'').trim(),g=window.GLOSSARY||{};
     const key=Object.keys(g).find(k=>k.toLowerCase()===raw.toLowerCase());
@@ -249,13 +255,6 @@ const globalGlossaryPatch = String.raw`
 const globalGlossaryAnchor = /<script id="glossaryDynamicPatch">[\\s\\S]*?<\\/script>/;
 if (!globalGlossaryAnchor.test(html)) throw new Error('Global glossary renderer anchor missing; refusing unsafe build.');
 html = html.replace(globalGlossaryAnchor, globalGlossaryPatch);
-Object.assign(window.GLOSSARY, {
-  "systemic":["Systemic","A term describing something that affects or involves the body as a whole rather than one isolated area.","In nursing, systemic findings suggest broader body involvement. Systemic lupus erythematosus is an autoimmune disease that can affect multiple organs."],
-  "systemic lupus erythematosus":["Systemic Lupus Erythematosus (SLE)","A chronic systemic autoimmune disease that can affect multiple organs, including the skin, joints, kidneys, blood cells, heart, lungs, and nervous system.","Assess for fatigue, joint pain, photosensitive rash, oral ulcers, cytopenias, and renal involvement. ANA is sensitive but not specific; anti-dsDNA and anti-Smith antibodies are more specific. Monitor urinalysis and renal function; reinforce sun protection, prescribed treatment, and infection precautions when immunosuppressed."],
-  "lupus":["Lupus (Systemic Lupus Erythematosus, SLE)","An autoimmune disease that causes inflammation and can affect multiple organs.","Assess skin, joint, renal, blood, cardiac, pulmonary, and neurologic manifestations. Reinforce sun protection, medication adherence, and monitoring for organ involvement."],
-  "erythematosus":["Erythematosus","A medical adjective relating to redness or erythema; it is part of the name systemic lupus erythematosus.","In SLE, it is part of the disease name and is associated with inflammatory skin findings such as a malar rash."]
-});
-
 if (!html.includes('Sinusitis') || !html.includes('ch5-high-yield-immunity-metabolism')) {
   throw new Error('Preservation check failed. Refusing to publish.');
 }
