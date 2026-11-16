@@ -21,15 +21,33 @@ if (!excluded.length) throw new Error('Medication source audit: exclusion list i
 
 let removedQuestions = 0;
 const removedByModule = {};
-for (const path of fs.readdirSync('.').filter(name => /^bank-data-\d+\.js$/.test(name))) {
+let removedExactDuplicates = 0;
+const removedDuplicatesByModule = {};
+const seenExactQuestions = new Set();
+function exactQuestionFingerprint(question) {
+  return JSON.stringify([question.question ?? null, question.options ?? null, question.answer ?? null, question.rationales ?? null]);
+}
+for (const path of fs.readdirSync('.').filter(name => /^bank-data-\d+\.js$/.test(name)).sort()) {
   const source = fs.readFileSync(path, 'utf8');
   const match = source.match(/Object\.assign\(window\.__BANK_DATA__\|\|\{\},([\s\S]*?)\);?\s*$/);
   if (!match) throw new Error('Medication source audit: could not parse ' + path);
   const banks = JSON.parse(match[1]);
   for (const [moduleId, questions] of Object.entries(banks)) {
-    const filtered = (questions || []).filter(question => !containsExcluded(JSON.stringify(question), excluded));
-    const removed = (questions || []).length - filtered.length;
-    if (removed) { removedQuestions += removed; removedByModule[moduleId] = (removedByModule[moduleId] || 0) + removed; }
+    let removedForModule = 0;
+    let duplicatesForModule = 0;
+    const filtered = (questions || []).filter(question => {
+      if (containsExcluded(JSON.stringify(question), excluded)) { removedForModule++; return false; }
+      const fingerprint = exactQuestionFingerprint(question);
+      if (seenExactQuestions.has(fingerprint)) {
+        removedExactDuplicates++;
+        duplicatesForModule++;
+        return false;
+      }
+      seenExactQuestions.add(fingerprint);
+      return true;
+    });
+    if (removedForModule) { removedQuestions += removedForModule; removedByModule[moduleId] = (removedByModule[moduleId] || 0) + removedForModule; }
+    if (duplicatesForModule) removedDuplicatesByModule[moduleId] = (removedDuplicatesByModule[moduleId] || 0) + duplicatesForModule;
     banks[moduleId] = filtered;
   }
   fs.writeFileSync(path, 'window.__BANK_DATA__=Object.assign(window.__BANK_DATA__||{},' + JSON.stringify(banks) + ');\n');
@@ -59,6 +77,9 @@ for (const review of Object.values(data.reviews || {})) {
 }
 
 policy.removedQuizQuestions = (Number(policy.removedQuizQuestions) || 0) + removedQuestions;
+policy.removedExactDuplicateQuestions = (Number(policy.removedExactDuplicateQuestions) || 0) + removedExactDuplicates;
+policy.removedExactDuplicateQuestionsByModule = Object.assign({}, policy.removedExactDuplicateQuestionsByModule || {});
+for (const [moduleId, count] of Object.entries(removedDuplicatesByModule)) policy.removedExactDuplicateQuestionsByModule[moduleId] = (policy.removedExactDuplicateQuestionsByModule[moduleId] || 0) + count;
 policy.removedQuizQuestionsByModule = Object.assign({}, policy.removedQuizQuestionsByModule || {});
 for (const [moduleId, count] of Object.entries(removedByModule)) policy.removedQuizQuestionsByModule[moduleId] = (policy.removedQuizQuestionsByModule[moduleId] || 0) + count;
 policy.removedChapter4MedicationCards = (Number(policy.removedChapter4MedicationCards) || 0) + removedCards;
@@ -67,4 +88,4 @@ data.medicationSourcePolicy = policy;
 html = html.replace(appDataMatch[1], JSON.stringify(data));
 fs.writeFileSync(file, html);
 fs.writeFileSync('index.html.gz', zlib.gzipSync(Buffer.from(html, 'utf8'), { level: 9, mtime: 0 }));
-console.log('Built source-controlled study site. Removed ' + removedQuestions + ' unsupported quiz items and ' + removedCards + ' unsupported medication cards.');
+console.log('Built source-controlled study site. Removed ' + removedQuestions + ' unsupported quiz items, ' + removedExactDuplicates + ' exact duplicate quiz cards, and ' + removedCards + ' unsupported medication cards.');
